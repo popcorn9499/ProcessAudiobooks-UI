@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30320.27
+VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessAudiobooks-UI", "ProcessAudiobooks-UI\ProcessAudiobooks-UI.csproj", "{857B9AD9-C5C9-4B9A-B5B6-B235F212AB28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessAudiobooks-UI", "ProcessAudiobooks-UI\ProcessAudiobooks-UI.csproj", "{AC1741BB-1E70-492D-84E1-F76B14982C97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{857B9AD9-C5C9-4B9A-B5B6-B235F212AB28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{857B9AD9-C5C9-4B9A-B5B6-B235F212AB28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{857B9AD9-C5C9-4B9A-B5B6-B235F212AB28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{857B9AD9-C5C9-4B9A-B5B6-B235F212AB28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1741BB-1E70-492D-84E1-F76B14982C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1741BB-1E70-492D-84E1-F76B14982C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1741BB-1E70-492D-84E1-F76B14982C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1741BB-1E70-492D-84E1-F76B14982C97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {90075A56-5849-45F0-9119-E6BB32810225}
+		SolutionGuid = {2023CC67-211F-4A7C-86A9-E8B193AD6F84}
 	EndGlobalSection
 EndGlobal
