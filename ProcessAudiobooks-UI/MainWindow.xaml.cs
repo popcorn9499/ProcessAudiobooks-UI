@@ -13,10 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System;
 using System.IO;
-using System.Text;
 using Microsoft.Win32;
+using ProcessAudiobooks_UI.Properties;
+using System.Windows.Forms;
 
 namespace ProcessAudiobooks_UI
 {
@@ -28,19 +28,26 @@ namespace ProcessAudiobooks_UI
 
     public partial class MainWindow : Window
     {
+        public int x;
         public MainWindow()
         {
             InitializeComponent();
             ConsoleWindow consoleObs = new ConsoleWindow();
-            
         }
 
         private void btnFindLocalPathDirectory_Click(object sender, RoutedEventArgs e)
         {
-            
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
                 tbLocalPath.Text = File.ReadAllText(openFileDialog.FileName);
         }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+ 
     }
 }
