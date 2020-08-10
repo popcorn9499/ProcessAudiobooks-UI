@@ -3,13 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProcessAudiobooks_UI"
+        xmlns:local="clr-namespace:ProcessAudiobooks_UI.CustomControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="632" Width="960">
     <Grid>
-        <TabControl>
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Audiobooks">
-                <WindowsFormsHost HorizontalAlignment="Left" Height="22" Margin="24,17,0,0" VerticalAlignment="Top" Width="80"/>
+                <Grid>
+                    <local:EnhancedListView Margin="0,0,260,0">
+                        <local:EnhancedListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Output Name" DisplayMemberBinding="{Binding outputName}"/>
+                                <GridViewColumn Header="Album" DisplayMemberBinding="{Binding Album}"/>
+                                <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}"/>
+                                <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}" />
+                                <GridViewColumn Header="Writer" DisplayMemberBinding="{Binding Writer}"/>
+                            </GridView>
+                        </local:EnhancedListView.View>
+                    </local:EnhancedListView>
+
+
+                </Grid>
             </TabItem>
             <TabItem Header="Setting">
                 <Grid Background="#FFE5E5E5">
