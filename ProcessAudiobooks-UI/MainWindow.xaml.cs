@@ -17,6 +17,7 @@ using System.IO;
 using Microsoft.Win32;
 using ProcessAudiobooks_UI.Properties;
 using System.Windows.Forms;
+using Ookii.Dialogs.Wpf;
 
 namespace ProcessAudiobooks_UI
 {
@@ -37,10 +38,9 @@ namespace ProcessAudiobooks_UI
 
         private void btnFindLocalPathDirectory_Click(object sender, RoutedEventArgs e)
         {
-
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                tbLocalPath.Text = File.ReadAllText(openFileDialog.FileName);
+            VistaFolderBrowserDialog openFolderDialog = new VistaFolderBrowserDialog();
+            if (openFolderDialog.ShowDialog() == true)
+                tbLocalPath.Text = openFolderDialog.SelectedPath;
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
