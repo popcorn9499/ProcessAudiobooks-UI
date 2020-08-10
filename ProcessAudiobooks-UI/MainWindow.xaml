@@ -13,12 +13,12 @@
                     <local:EnhancedListView Margin="0,0,260,0">
                         <local:EnhancedListView.View>
                             <GridView>
-                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Output Name" DisplayMemberBinding="{Binding outputName}"/>
-                                <GridViewColumn Header="Album" DisplayMemberBinding="{Binding Album}"/>
-                                <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}"/>
-                                <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}" />
-                                <GridViewColumn Header="Writer" DisplayMemberBinding="{Binding Writer}"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                                <GridViewColumn Header="Output Name" DisplayMemberBinding="{Binding outputName}" Width="200"/>
+                                <GridViewColumn Header="Album" DisplayMemberBinding="{Binding Album}" Width="80"/>
+                                <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="80"/>
+                                <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}" Width="50"/>
+                                <GridViewColumn Header="Writer" DisplayMemberBinding="{Binding Writer}" Width="100"/>
                             </GridView>
                         </local:EnhancedListView.View>
                     </local:EnhancedListView>
