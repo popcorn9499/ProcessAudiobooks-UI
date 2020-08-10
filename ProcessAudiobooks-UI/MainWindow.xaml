@@ -10,7 +10,7 @@
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Audiobooks">
                 <Grid>
-                    <local:EnhancedListView Margin="0,0,260,0">
+                    <local:EnhancedListView x:Name="eLvAudiobook" Margin="0,0,101,0">
                         <local:EnhancedListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
@@ -22,6 +22,9 @@
                             </GridView>
                         </local:EnhancedListView.View>
                     </local:EnhancedListView>
+                    <Button Content="Edit Book" HorizontalAlignment="Left" Margin="888,35,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Add Book" HorizontalAlignment="Left" Margin="888,10,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Delete Book" HorizontalAlignment="Left" Margin="876,60,0,0" VerticalAlignment="Top"/>
 
 
                 </Grid>
@@ -46,7 +49,9 @@
                     <TextBox x:Name="tbLocalPath" HorizontalAlignment="Left" Margin="528,210,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="406"/>
                     <Label Content="Operation Path Local:" HorizontalAlignment="Left" Margin="528,179,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tbRemotePath" HorizontalAlignment="Left" Margin="528,264,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="406"/>
-                    <Button x:Name="btnFindLocalPathDirectory" Content="Button" HorizontalAlignment="Left" Margin="656,182,0,0" VerticalAlignment="Top" Click="btnFindLocalPathDirectory_Click"/>
+                    <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="656,182,0,0" VerticalAlignment="Top" Click="btnFindLocalPathDirectory_Click"/>
+                    <Label Content="Command:" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Margin="10,52,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="467"/>
                 </Grid>
             </TabItem>
         </TabControl>
