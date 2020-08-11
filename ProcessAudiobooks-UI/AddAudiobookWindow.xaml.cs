@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -44,7 +44,12 @@ namespace ProcessAudiobooks_UI
 
         private void btnClearSelectedFiles_Click(object sender, RoutedEventArgs e)
         {
-
+            //removes items selected in filesList
+            var selected = lvListFiles.SelectedItems.Cast<Object>().ToArray();
+            foreach (var eachItem in selected)
+            {
+                lvListFiles.Items.Remove(eachItem);
+            }
         }
 
         private void btnClearAllFiles_Click(object sender, RoutedEventArgs e)
