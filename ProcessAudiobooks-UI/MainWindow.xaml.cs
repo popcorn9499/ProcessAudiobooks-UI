@@ -50,7 +50,9 @@ namespace ProcessAudiobooks_UI
 
         private void btnAddBook_Click(object sender, RoutedEventArgs e)
         {
+            AddAudiobookWindow x = new AddAudiobookWindow();
 
+            x.Show();
         }
 
         private void btnEditBook_Click(object sender, RoutedEventArgs e)
