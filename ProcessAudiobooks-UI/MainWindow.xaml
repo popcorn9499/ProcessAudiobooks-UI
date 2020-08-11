@@ -22,8 +22,8 @@
                             </GridView>
                         </local:EnhancedListView.View>
                     </local:EnhancedListView>
-                    <Button Content="Edit Book" HorizontalAlignment="Left" Margin="888,35,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Add Book" HorizontalAlignment="Left" Margin="888,10,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Edit Book" HorizontalAlignment="Left" Margin="876,35,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Add Book" HorizontalAlignment="Left" Margin="876,10,0,0" VerticalAlignment="Top"/>
                     <Button Content="Delete Book" HorizontalAlignment="Left" Margin="876,60,0,0" VerticalAlignment="Top"/>
 
 
