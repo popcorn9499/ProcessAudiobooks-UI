@@ -51,8 +51,9 @@ namespace ProcessAudiobooks_UI
         private void btnAddBook_Click(object sender, RoutedEventArgs e)
         {
             AddAudiobookWindow x = new AddAudiobookWindow();
-
-            x.Show();
+            
+            x.ShowDialog(); //used show dialog to keep the window open for an extended perikod of time
+            eLvAudiobook.Items.Add(x.book);
         }
 
         private void btnEditBook_Click(object sender, RoutedEventArgs e)
