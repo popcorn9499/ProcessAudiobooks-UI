@@ -10,7 +10,7 @@
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Audiobooks">
                 <Grid>
-                    <local:EnhancedListView x:Name="eLvAudiobook" Margin="0,0,101,0">
+                    <local:EnhancedListView x:Name="eLvAudiobook" Margin="91,0,10,0">
                         <local:EnhancedListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
@@ -19,12 +19,19 @@
                                 <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="80"/>
                                 <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}" Width="50"/>
                                 <GridViewColumn Header="Writer" DisplayMemberBinding="{Binding Writer}" Width="100"/>
+                                <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100"/>
                             </GridView>
                         </local:EnhancedListView.View>
                     </local:EnhancedListView>
-                    <Button Content="Edit Book" HorizontalAlignment="Left" Margin="876,35,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Add Book" HorizontalAlignment="Left" Margin="876,10,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Delete Book" HorizontalAlignment="Left" Margin="876,60,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnEditBook" Content="Edit Book" HorizontalAlignment="Left" Margin="4,46,0,0" VerticalAlignment="Top" Click="btnEditBook_Click" Height="26" Width="82"/>
+                    <Button x:Name="btnAddBook" Content="Add Book" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Click="btnAddBook_Click" Width="82" Height="26"/>
+                    <Button x:Name="btnDeleteBook" Content="Delete Book" HorizontalAlignment="Left" Margin="4,86,0,0" VerticalAlignment="Top" Click="btnDeleteBook_Click" Height="26" Width="82"/>
+                    <Button x:Name="btnStart" HorizontalAlignment="Left" Margin="4,124,0,0" Width="82" Height="40" VerticalAlignment="Top">
+                        <TextBlock Text="Start Creating Audiobooks" TextWrapping="Wrap" Cursor="" Height="34"/>
+                    </Button>
+                    <Button HorizontalAlignment="Left" Margin="4,174,0,0" VerticalAlignment="Top" Height="40" Width="82">
+                        <TextBlock Text="Stop Creating Audiobooks" TextWrapping="Wrap" Height="49"/>
+                    </Button>
 
 
                 </Grid>

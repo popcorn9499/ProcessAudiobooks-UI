@@ -48,6 +48,19 @@ namespace ProcessAudiobooks_UI
 
         }
 
- 
+        private void btnAddBook_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEditBook_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteBook_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
