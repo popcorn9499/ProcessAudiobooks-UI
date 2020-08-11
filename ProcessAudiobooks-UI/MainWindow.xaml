@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessAudiobooks_UI.CustomControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="632" Width="960">
+        Title="Process Audiobooks" Height="632" Width="960">
     <Grid>
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Audiobooks">
