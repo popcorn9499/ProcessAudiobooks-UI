@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -35,8 +35,6 @@ namespace ProcessAudiobooks_UI
             }
 
             if ((null == droppedFiles) || (!droppedFiles.Any())) { return; }
-
-            listFiles.Items.Clear();
 
             foreach (string s in droppedFiles)
             {
