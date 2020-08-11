@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessAudiobooks_UI"
         mc:Ignorable="d"
-        Title="AddAudiobookWindow" Height="450" Width="800"  AllowDrop="True">
+        Title="AddAudiobookWindow" Height="450" Width="800"  AllowDrop="True" Background="#FF979393">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Grid.Row="1" Margin="238,3,461,403">Drop Files Here</Label>
-        <ListBox x:Name="lvListFiles" Grid.Row="1" Margin="238,36,0,8" Drop="listFiles_Drop" SelectionMode="Extended"></ListBox>
+        <ListBox x:Name="lvListFiles" Grid.Row="1" Margin="238,36,0,8" Drop="listFiles_Drop" SelectionMode="Extended" Background="#FFC7C7C7"></ListBox>
         <Button x:Name="btnClearSelectedFiles" Content="Clear Selected Files" HorizontalAlignment="Left" Margin="339,7,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearSelectedFiles_Click"/>
         <Button x:Name="btnClearAllFiles" Content="Clear All Files" HorizontalAlignment="Left" Margin="458,7,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearAllFiles_Click"/>
         <Label Content="Name: " HorizontalAlignment="Left" Margin="13,36,0,0" Grid.Row="1" VerticalAlignment="Top"/>

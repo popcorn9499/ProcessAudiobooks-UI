@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessAudiobooks_UI.CustomControls"
         mc:Ignorable="d"
-        Title="Process Audiobooks" Height="632" Width="960">
+        Title="Process Audiobooks" Height="632" Width="960" Background="#FF979393">
     <Grid>
-        <TabControl SelectionChanged="TabControl_SelectionChanged">
+        <TabControl SelectionChanged="TabControl_SelectionChanged" Background="#FF979393">
             <TabItem Header="Audiobooks">
                 <Grid>
-                    <local:EnhancedListView x:Name="eLvAudiobook" Margin="91,0,10,0">
+                    <local:EnhancedListView x:Name="eLvAudiobook" Margin="91,0,10,0" Background="#FFC7C7C7">
                         <local:EnhancedListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
@@ -37,7 +37,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Setting">
-                <Grid Background="#FFE5E5E5">
+                <Grid Background="#FF979393">
                     <Grid/>
                     <GroupBox Header="SSH Connection" Margin="498,10,10,435"/>
                     <Grid>
