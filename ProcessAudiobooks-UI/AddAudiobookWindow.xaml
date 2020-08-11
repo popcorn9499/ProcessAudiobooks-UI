@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessAudiobooks_UI"
         mc:Ignorable="d"
-        Title="AddAudiobookWindow" Height="450" Width="800"  AllowDrop="True" Background="#FF979393">
+        Title="AddAudiobookWindow" Height="450" Width="800"  AllowDrop="True" Background="#FF979393" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

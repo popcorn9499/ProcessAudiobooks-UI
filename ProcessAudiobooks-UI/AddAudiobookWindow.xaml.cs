@@ -13,6 +13,7 @@ using System.Linq;
 using System.Windows.Navigation;
 using System.Windows.Interop;
 using System.Reflection;
+using ProcessAudiobooks_UI.DataObjects;
 
 namespace ProcessAudiobooks_UI
 {
@@ -21,9 +22,13 @@ namespace ProcessAudiobooks_UI
     /// </summary>
     public partial class AddAudiobookWindow : Window
     {
+
+       public DataObjects.Audiobook book;
+
         public AddAudiobookWindow()
         {
             InitializeComponent();
+            
         }
 
         private void listFiles_Drop(object sender, DragEventArgs e)
@@ -55,6 +60,15 @@ namespace ProcessAudiobooks_UI
         private void btnClearAllFiles_Click(object sender, RoutedEventArgs e)
         {
                 lvListFiles.Items.Clear();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            List<String> fileList = lvListFiles.Items.Cast<ListViewItem>()
+                                 .Select(item => item.Content.ToString())
+                                 .ToList();
+            book = new DataObjects.Audiobook(tbName.Text,tbOutputName.Text,tbAlbum.Text,tbGenre.Text, tbYear.Text, tbWriter.Text, fileList);
+            
         }
     }
 }
