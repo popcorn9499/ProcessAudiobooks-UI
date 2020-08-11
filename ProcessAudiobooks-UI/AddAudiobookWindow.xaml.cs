@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -49,7 +49,7 @@ namespace ProcessAudiobooks_UI
 
         private void btnClearAllFiles_Click(object sender, RoutedEventArgs e)
         {
-
+            listFiles.Items.Clear();
         }
     }
 }
