@@ -29,16 +29,16 @@ namespace ProcessAudiobooks_UI
         private void listFiles_Drop(object sender, DragEventArgs e)
         {
             string[] droppedFiles = null;
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) //checks if we have any dropped files and adds them.
             {
                 droppedFiles = e.Data.GetData(DataFormats.FileDrop, true) as string[];
             }
 
-            if ((null == droppedFiles) || (!droppedFiles.Any())) { return; }
+            if ((null == droppedFiles) || (!droppedFiles.Any())) { return; } //if we have no dropped files then stop this function
 
-            foreach (string s in droppedFiles)
+            foreach (string s in droppedFiles) //if we have dropped files add them to the listview ListFiles
             {
-                listFiles.Items.Add(s);
+                lvListFiles.Items.Add(s);
             }
         }
 
@@ -49,7 +49,7 @@ namespace ProcessAudiobooks_UI
 
         private void btnClearAllFiles_Click(object sender, RoutedEventArgs e)
         {
-            listFiles.Items.Clear();
+                lvListFiles.Items.Clear();
         }
     }
 }

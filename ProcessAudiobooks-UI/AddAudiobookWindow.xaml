@@ -12,7 +12,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Grid.Row="1" Margin="188,3,511,403">Drop Files Here</Label>
-        <ListBox x:Name="listFiles" Grid.Row="1" Margin="188,36,0,8" Drop="listFiles_Drop"></ListBox>
+        <ListBox x:Name="lvListFiles" Grid.Row="1" Margin="188,36,0,8" Drop="listFiles_Drop"></ListBox>
         <Button x:Name="btnClearSelectedFiles" Content="Clear Selected Files" HorizontalAlignment="Left" Margin="301,6,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearSelectedFiles_Click"/>
         <Button x:Name="btnClearAllFiles" Content="Clear All Files" HorizontalAlignment="Left" Margin="444,6,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearAllFiles_Click"/>
     </Grid>
