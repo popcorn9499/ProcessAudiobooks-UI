@@ -46,6 +46,7 @@ namespace ProcessAudiobooks_UI
             using (var client = new SshClient(this.ip, this.port, this.username, this.password))
             {
                 client.Connect();
+                ConsoleWindow.WriteInfo(command);
                 var cmd = client.CreateCommand(command);
                 var result = cmd.BeginExecute();
 
@@ -57,7 +58,7 @@ namespace ProcessAudiobooks_UI
                         string line = reader.ReadLine();
                         if (line != null)
                         {
-                            ConsoleWindow.WriteInfo(line);
+                            ConsoleWindow.WriteInfo("[SSH] " + line);
                             await Task.Delay(2);
                         }
                     }
