@@ -1,4 +1,4 @@
-﻿using ProcessAudiobooks_UI.CustomControls;
+using ProcessAudiobooks_UI.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.Text;
