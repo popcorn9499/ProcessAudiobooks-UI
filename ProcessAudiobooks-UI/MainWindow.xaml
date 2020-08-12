@@ -60,7 +60,7 @@
                     <TextBox x:Name="tbRemotePath" HorizontalAlignment="Left" Margin="10,340,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="406"/>
                     <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="133,258,0,0" VerticalAlignment="Top" Click="btnFindLocalPathDirectory_Click"/>
                     <Label Content="Command: (variables as follows)" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Margin="10,210,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="467"/>
+                    <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Margin="10,210,0,0" Text="/usr/bin/m4b-tool merge --adjust-for-ipod --jobs=4 --ffmpeg-threads=16 --force --name=%Name% --artist=%outputName% --album=%Album% --year=%Year% --genre=%Genre% --writer=%Writer% './'" TextWrapping="Wrap" VerticalAlignment="Top" Width="760" Height="40"/>
                     <Label Content="'%Name%' being name" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top"/>
                     <Label Content="'%outputName%' being Output Name" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top"/>
                     <Label Content="'%Album%' Being Album" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top"/>
