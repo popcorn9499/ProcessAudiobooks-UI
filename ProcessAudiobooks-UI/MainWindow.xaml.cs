@@ -164,7 +164,7 @@ namespace ProcessAudiobooks_UI
 
         private void btnStartCreateAudiobooks_Click(object sender, RoutedEventArgs e)
         {
-            processor.StartProcess();
+            processor.StartProcess(sshClient);
         }
 
 

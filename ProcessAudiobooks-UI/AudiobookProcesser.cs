@@ -1,4 +1,5 @@
 ﻿using ProcessAudiobooks_UI.CustomControls;
+using Renci.SshNet;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +27,7 @@ namespace ProcessAudiobooks_UI
             this.eLvAudiobook = eLvAudiobook;
         } 
 
-        public async void StartProcess()
+        public async void StartProcess(ssh sshClient)
         {
             if (this.processing == Processing.Stopped) //if not started start.
             {
@@ -67,10 +68,15 @@ namespace ProcessAudiobooks_UI
                         //Create Command
 
                         String command = tbCommand.Text;
-                        command = command.Replace("%Name%", book.Name).Replace("%outputName%", book.outputName).Replace("%Artist%",book.Artist).Replace("%Album%", book.Album)
+                        command = command.Replace("%Name%", book.Name).Replace("%outputName%", "output/"+book.outputName).Replace(" % Artist%",book.Artist).Replace("%Album%", book.Album)
                             .Replace("%Genre%", book.Genre).Replace("%Year%", book.Year).Replace("%Writer%", book.Writer);
                         MessageBox.Show(command);
 
+                        string commandDestFolder = tbRemotePath.Text + "/" + book.Name;
+
+                        //Run Command
+                        await sshClient.RunCommand("cd " + commandDestFolder + "&&" +command);
+                        MessageBox.Show("Finished");
                     }
                 }
             }
