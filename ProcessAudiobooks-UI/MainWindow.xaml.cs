@@ -51,19 +51,26 @@ namespace ProcessAudiobooks_UI
         private void btnAddBook_Click(object sender, RoutedEventArgs e)
         {
             AddAudiobookWindow x = new AddAudiobookWindow();
-            
             x.ShowDialog(); //used show dialog to keep the window open for an extended perikod of time
             eLvAudiobook.Items.Add(x.book);
+            //Handle empty windows
         }
 
         private void btnEditBook_Click(object sender, RoutedEventArgs e)
         {
-
+            DataObjects.Audiobook selected = (DataObjects.Audiobook)eLvAudiobook.SelectedItem;
+            AddAudiobookWindow x = new AddAudiobookWindow(selected);
+            x.ShowDialog();
         }
 
         private void btnDeleteBook_Click(object sender, RoutedEventArgs e)
         {
-
+            //removes items selected in Audiobook List
+            var selected = eLvAudiobook.SelectedItems.Cast<Object>().ToArray();
+            foreach (var eachItem in selected)
+            {
+                eLvAudiobook.Items.Remove(eachItem);
+            }
         }
     }
 }
