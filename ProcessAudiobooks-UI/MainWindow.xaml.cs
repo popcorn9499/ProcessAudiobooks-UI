@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -18,6 +18,7 @@ using Microsoft.Win32;
 using ProcessAudiobooks_UI.Properties;
 using System.Windows.Forms;
 using Ookii.Dialogs.Wpf;
+
 
 namespace ProcessAudiobooks_UI
 {
@@ -41,11 +42,6 @@ namespace ProcessAudiobooks_UI
             VistaFolderBrowserDialog openFolderDialog = new VistaFolderBrowserDialog();
             if (openFolderDialog.ShowDialog() == true)
                 tbLocalPath.Text = openFolderDialog.SelectedPath;
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void btnAddBook_Click(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Process Audiobooks" Height="632" Width="960" Background="#FF979393">
     <Grid>
-        <TabControl SelectionChanged="TabControl_SelectionChanged" Background="#FF979393">
+        <TabControl Background="#FF979393">
             <TabItem Header="Audiobooks">
                 <Grid>
                     <local:EnhancedListView x:Name="eLvAudiobook" Margin="91,0,10,0" Background="#FFC7C7C7">
