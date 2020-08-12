@@ -49,16 +49,7 @@ namespace ProcessAudiobooks_UI
                             if ((attr & FileAttributes.Directory) == FileAttributes.Directory) // if its a directory copy the directory and files individually
                             {
                                 string trueDestFolder = destFolder + "\\" + fileName;
-                                Directory.CreateDirectory(trueDestFolder);
-                                //Now Create all of the directories
-                                foreach (string dirPath in Directory.GetDirectories(file, "*",
-                                    SearchOption.AllDirectories))
-                                    Directory.CreateDirectory(dirPath.Replace(file, trueDestFolder));
-
-                                //Copy all the files & Replaces any files with the same name
-                                foreach (string newPath in Directory.GetFiles(file, "*.*",
-                                    SearchOption.AllDirectories))
-                                    File.Copy(newPath, newPath.Replace(file, trueDestFolder), true);
+                                this.CopyDirectory(file, trueDestFolder);
                             }
                             else //if its a file just do a simple file copy
                             {
@@ -80,6 +71,20 @@ namespace ProcessAudiobooks_UI
                     }
                 }
             }
+        }
+
+        private void CopyDirectory(string file, string trueDestFolder)
+        {
+            Directory.CreateDirectory(trueDestFolder);
+            //Now Create all of the directories
+            foreach (string dirPath in Directory.GetDirectories(file, "*",
+                SearchOption.AllDirectories))
+                Directory.CreateDirectory(dirPath.Replace(file, trueDestFolder));
+
+            //Copy all the files & Replaces any files with the same name
+            foreach (string newPath in Directory.GetFiles(file, "*.*",
+                SearchOption.AllDirectories))
+                File.Copy(newPath, newPath.Replace(file, trueDestFolder), true);
         }
 
         public void StopProcess()
