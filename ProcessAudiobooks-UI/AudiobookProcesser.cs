@@ -71,6 +71,7 @@ namespace ProcessAudiobooks_UI
                     }
                 }
             }
+            this.processing = Processing.Stopped;
         }
 
         private void CopyDirectory(string file, string trueDestFolder)
