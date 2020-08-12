@@ -23,7 +23,7 @@ namespace ProcessAudiobooks_UI.DataObjects
         {
             this.Name = Name;
             this.outputName = outputName;
-            this.Artist = Artist
+            this.Artist = Artist;
             this.Album = Album;
             this.Genre = Genre;
             this.Year = Year;
