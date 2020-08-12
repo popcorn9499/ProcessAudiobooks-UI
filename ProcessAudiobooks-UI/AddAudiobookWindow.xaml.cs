@@ -36,6 +36,7 @@ namespace ProcessAudiobooks_UI
             InitializeComponent();
             tbName.Text = audiobook.Name;
             tbOutputName.Text = audiobook.outputName;
+            tbArtist.Text = audiobook.Artist;
             tbAlbum.Text = audiobook.Album;
             tbGenre.Text = audiobook.Genre;
             tbYear.Text = audiobook.Year;
@@ -80,7 +81,7 @@ namespace ProcessAudiobooks_UI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             List<String> fileList = lvListFiles.Items.Cast<String>().ToList();
-            book = new DataObjects.Audiobook(tbName.Text,tbOutputName.Text,tbAlbum.Text,tbGenre.Text, tbYear.Text, tbWriter.Text, fileList);
+            book = new DataObjects.Audiobook(tbName.Text,tbOutputName.Text,tbArtist.Text,tbAlbum.Text,tbGenre.Text, tbYear.Text, tbWriter.Text, fileList);
             
         }
     }

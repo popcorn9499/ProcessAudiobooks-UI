@@ -17,16 +17,18 @@
         <Button x:Name="btnClearAllFiles" Content="Clear All Files" HorizontalAlignment="Left" Margin="458,7,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearAllFiles_Click"/>
         <Label Content="Name: " HorizontalAlignment="Left" Margin="13,36,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Output Name:" HorizontalAlignment="Left" Margin="13,56,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Album:" HorizontalAlignment="Left" Margin="13,76,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Genre:" HorizontalAlignment="Left" Margin="13,96,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Year:" HorizontalAlignment="Left" Margin="13,116,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Writer:" HorizontalAlignment="Left" Margin="13,136,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Artist:" HorizontalAlignment="Left" Margin="13,76,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Album:" HorizontalAlignment="Left" Margin="13,96,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Genre:" HorizontalAlignment="Left" Margin="13,116,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Year:" HorizontalAlignment="Left" Margin="13,136,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Writer:" HorizontalAlignment="Left" Margin="13,156,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="56,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbOutputName" HorizontalAlignment="Left" Margin="98,60,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbAlbum" HorizontalAlignment="Left" Margin="63,80,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbGenre" HorizontalAlignment="Left" Margin="57,100,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbYear" HorizontalAlignment="Left" Margin="48,120,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbWriter" HorizontalAlignment="Left" Margin="56,140,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbArtist" HorizontalAlignment="Left" Margin="63,80,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbAlbum" HorizontalAlignment="Left" Margin="63,100,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbGenre" HorizontalAlignment="Left" Margin="57,120,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbYear" HorizontalAlignment="Left" Margin="48,140,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbWriter" HorizontalAlignment="Left" Margin="56,160,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 
 </Window>
