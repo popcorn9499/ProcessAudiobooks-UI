@@ -1,4 +1,4 @@
-using Renci.SshNet;
+﻿using Renci.SshNet;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -16,17 +16,21 @@ namespace ProcessAudiobooks_UI
         public string username { get; set; }
         public string password { get; set; }
 
-        private SshClient client;
 
-        public  ssh(string ip, int port, string username, string password) {
+        public ssh(string ip, int port, string username, string password) {
             this.ip = ip;
             this.port = port;
             this.username = username;
             this.password = password;
+            
+        }
+
+        public async Task sshStartTest()
+        {
             try
             {
-                var tsk = RunCommand("echo 'SSH Connection Test Successful'");
-                tsk.Wait();
+                await RunCommand("echo 'SSH Connection Test Successful'");
+                
             }
             catch
             {

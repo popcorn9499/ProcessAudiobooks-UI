@@ -120,7 +120,7 @@ namespace ProcessAudiobooks_UI
             }
         }
 
-        private void btnSshTestConnection_Click(object sender, RoutedEventArgs e)
+        private async void btnSshTestConnection_Click(object sender, RoutedEventArgs e)
         {
             string ip, username, password;
             int port;
@@ -137,6 +137,7 @@ namespace ProcessAudiobooks_UI
             try
             {
                 sshClient = new ssh(ip, port, username, password);
+                await sshClient.sshStartTest();
             }
             catch
             {
