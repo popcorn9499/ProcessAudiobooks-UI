@@ -16,59 +16,59 @@ namespace ProcessAudiobooks_UI
             DEBUG = 50,
         }
 
-        private int debugLevel = (int)DEBUG_LEVELS.DEBUG;
+        private static int debugLevel = (int)DEBUG_LEVELS.INFO;
 
         private static string PREFIX = "[ProcessAudioBooks-UI]: ";
 
         public ConsoleWindow()
         {
             AllocConsole();
-            this.WriteDebug(" Started");
+            ConsoleWindow.WriteDebug(" Started");
         }
 
 
-        private void _Write(String msg)
+        private static void _Write(String msg)
         {
             Console.WriteLine(ConsoleWindow.PREFIX + msg);
         }
 
-        public void WriteInfo(string msg)
+        public static void WriteInfo(string msg)
         {
             if (debugLevel >= (int)ConsoleWindow.DEBUG_LEVELS.INFO)
             {
-                this._Write("[INFO] " + msg);
+                ConsoleWindow._Write("[INFO] " + msg);
             }
         }
 
-        public void WriteWarning(string msg)
+        public static void WriteWarning(string msg)
         {
             if (debugLevel >= (int)ConsoleWindow.DEBUG_LEVELS.WARNING)
             {
-                this._Write("[WARNING] " + msg);
+                ConsoleWindow._Write("[WARNING] " + msg);
             }
         }
 
-        public void WriteError(string msg)
+        public static void WriteError(string msg)
         {
             if (debugLevel >= (int)ConsoleWindow.DEBUG_LEVELS.ERROR)
             {
-                this._Write("[ERROR] " + msg);
+                ConsoleWindow._Write("[ERROR] " + msg);
             }
         }
 
-        public void WriteCritical(string msg)
+        public static void WriteCritical(string msg)
         {
             if (debugLevel >= (int)ConsoleWindow.DEBUG_LEVELS.CRITICAL)
             {
-                this._Write("[CRITICAL] " + msg);
+                ConsoleWindow._Write("[CRITICAL] " + msg);
             }
         }
 
-        public void WriteDebug(string msg)
+        public static void WriteDebug(string msg)
         {
             if (debugLevel >= (int)ConsoleWindow.DEBUG_LEVELS.DEBUG)
             {
-                this._Write("[DEBUG] " + msg);
+                ConsoleWindow._Write("[DEBUG] " + msg);
             }
         }
 
