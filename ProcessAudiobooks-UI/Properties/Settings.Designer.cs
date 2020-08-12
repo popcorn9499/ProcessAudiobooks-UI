@@ -26,12 +26,48 @@ namespace ProcessAudiobooks_UI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ColumnOrder {
+        public string remoteCommand {
             get {
-                return ((string)(this["ColumnOrder"]));
+                return ((string)(this["remoteCommand"]));
             }
             set {
-                this["ColumnOrder"] = value;
+                this["remoteCommand"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string sshConnectDetails {
+            get {
+                return ((string)(this["sshConnectDetails"]));
+            }
+            set {
+                this["sshConnectDetails"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string localPath {
+            get {
+                return ((string)(this["localPath"]));
+            }
+            set {
+                this["localPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string remotePath {
+            get {
+                return ((string)(this["remotePath"]));
+            }
+            set {
+                this["remotePath"] = value;
             }
         }
     }
