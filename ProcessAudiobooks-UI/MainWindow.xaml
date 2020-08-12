@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessAudiobooks_UI.CustomControls"
         mc:Ignorable="d"
-        Title="Process Audiobooks" Height="632" Width="960" Background="#FF979393">
+        Title="Process Audiobooks" Height="632" Width="960" Background="#FF979393" Closing="Window_Closing">
     <Grid>
         <TabControl Background="#FF979393">
             <TabItem Header="Audiobooks">

@@ -18,7 +18,7 @@ using Microsoft.Win32;
 using ProcessAudiobooks_UI.Properties;
 using System.Windows.Forms;
 using Ookii.Dialogs.Wpf;
-
+using Newtonsoft.Json;
 
 namespace ProcessAudiobooks_UI
 {
@@ -36,6 +36,16 @@ namespace ProcessAudiobooks_UI
         {
             InitializeComponent();
             ConsoleWindow consoleObs = new ConsoleWindow();
+            if (!Settings.Default.sshConnectDetails.Equals("")) { 
+                sshClient = JsonConvert.DeserializeObject<ssh>(Settings.Default.sshConnectDetails);
+                tbSshIP.Text = sshClient.ip;
+                tbSshPort.Text = sshClient.port.ToString();
+                tbSshUsername.Text = sshClient.username;
+                pbSshPassword.Password = sshClient.password;
+            }
+            tbCommand.Text = Settings.Default.remoteCommand;
+            tbLocalPath.Text = Settings.Default.localPath;
+            tbRemotePath.Text = Settings.Default.remotePath;
         }
 
         private void btnFindLocalPathDirectory_Click(object sender, RoutedEventArgs e)
@@ -135,6 +145,15 @@ namespace ProcessAudiobooks_UI
             }
             System.Windows.MessageBox.Show("Connection Sucessful");
 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Settings.Default.sshConnectDetails = JsonConvert.SerializeObject(sshClient);
+            Settings.Default.remoteCommand = tbCommand.Text;
+            Settings.Default.localPath = tbLocalPath.Text;
+            Settings.Default.remotePath = tbRemotePath.Text;
+            Settings.Default.Save();
         }
     }
 }
