@@ -79,9 +79,7 @@ namespace ProcessAudiobooks_UI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            List<String> fileList = lvListFiles.Items.Cast<ListViewItem>()
-                                 .Select(item => item.Content.ToString())
-                                 .ToList();
+            List<String> fileList = lvListFiles.Items.Cast<String>().ToList();
             book = new DataObjects.Audiobook(tbName.Text,tbOutputName.Text,tbAlbum.Text,tbGenre.Text, tbYear.Text, tbWriter.Text, fileList);
             
         }
