@@ -98,6 +98,7 @@ namespace ProcessAudiobooks_UI
             {
                 audiobookWindow = new AddAudiobookWindow(audiobook);
                 audiobookWindow.ShowDialog(); //used show dialog to keep the window open for an extended perikod of time
+                eLvAudiobook.Items.Remove(audiobook);
                 audiobook = audiobookWindow.book;
 
                 //Handle empty windows
@@ -110,6 +111,7 @@ namespace ProcessAudiobooks_UI
                     System.Windows.MessageBox.Show("Please set Output Name to something");
                 }
             } while (audiobook.Name.Equals("") || audiobook.outputName.Equals(""));
+            
             eLvAudiobook.Items.Add(audiobook);
         }
 
