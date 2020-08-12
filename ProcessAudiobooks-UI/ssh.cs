@@ -1,5 +1,6 @@
-using Renci.SshNet;
+﻿using Renci.SshNet;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -15,30 +16,34 @@ namespace ProcessAudiobooks_UI
         private string username { get; set; }
         private string password { get; set; }
 
-        public ssh(string ip, int port, string username, string password) {
+        private SshClient client;
+
+        public  ssh(string ip, int port, string username, string password) {
             this.ip = ip;
             this.port = port;
             this.username = username;
             this.password = password;
-            //Console.WriteLine("Starting Audiobook Processor");
-            var tsk = TestMethod();
-            for (int i = 0; i< 5; i++)
+            try
             {
-                Console.WriteLine("TEST123");
-                Thread.Sleep(1000);
+                var tsk = RunCommand("echo 'SSH Connection Test Successful'");
+                tsk.Wait();
             }
-            tsk.Wait();
-
+            catch
+            {
+                System.Windows.MessageBox.Show("SSH Server down or The connection settings are wrong");
+                ConsoleWindow.WriteInfo("SSH Server down or The connection settings are wrong");
+                throw new SSHConnectionFailed();
+            }
+            ConsoleWindow.WriteInfo("SSH connected!");
         }
 
-        public static async Task TestMethod()
+        public async Task RunCommand(string command)
         {
-            using (var client = new SshClient("ip", "username", "test"))
+            using (var client = new SshClient(this.ip, this.port, this.username, this.password))
             {
                 client.Connect();
-                var cmd = client.CreateCommand("for i in {1..5}; do echo 'hi' ; sleep 1 ; done");
+                var cmd = client.CreateCommand(command);
                 var result = cmd.BeginExecute();
-               // Console.WriteLine(cmd.Result);
 
                 using (var reader =
                    new StreamReader(cmd.OutputStream, Encoding.UTF8, true, -1, true))
@@ -48,16 +53,21 @@ namespace ProcessAudiobooks_UI
                         string line = reader.ReadLine();
                         if (line != null)
                         {
-                            Console.WriteLine(line);
-                            await Task.Delay(50);
+                            ConsoleWindow.WriteInfo(line);
+                            await Task.Delay(2);
                         }
                     }
                 }
 
                 cmd.EndExecute(result);
-
-
+                ConsoleWindow.WriteInfo("Finished");
             }
         }
+    }
+
+    public class SSHConnectionFailed : Exception
+    {
+        public SSHConnectionFailed()
+            : base("SSH Server down or The connection settings are wrong") { }
     }
 }
