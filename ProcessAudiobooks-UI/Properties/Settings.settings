@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="remoteCommand" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">/usr/bin/m4b-tool merge --adjust-for-ipod --jobs=4 --ffmpeg-threads=16 --force --name=%Name% --artist=%outputName% --album=%Album% --year=%Year% --genre=%Genre% --writer=%Writer% './'</Value>
     </Setting>
     <Setting Name="sshConnectDetails" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
