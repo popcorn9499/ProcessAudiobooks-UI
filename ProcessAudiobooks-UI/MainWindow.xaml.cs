@@ -32,6 +32,8 @@ namespace ProcessAudiobooks_UI
     {
         public int x;
         public ssh sshClient = null;
+
+        public AudiobookProcesser processor;
         public MainWindow()
         {
             InitializeComponent();
@@ -46,6 +48,7 @@ namespace ProcessAudiobooks_UI
             tbCommand.Text = Settings.Default.remoteCommand;
             tbLocalPath.Text = Settings.Default.localPath;
             tbRemotePath.Text = Settings.Default.remotePath;
+            processor = new AudiobookProcesser(tbCommand, tbLocalPath, tbRemotePath, eLvAudiobook);
         }
 
         private void btnFindLocalPathDirectory_Click(object sender, RoutedEventArgs e)
@@ -159,12 +162,14 @@ namespace ProcessAudiobooks_UI
 
         private void btnStartCreateAudiobooks_Click(object sender, RoutedEventArgs e)
         {
-
+            processor.StartProcess();
         }
+
+
 
         private void btnStopCreateAudiobooks_Click(object sender, RoutedEventArgs e)
         {
-
+            processor.StopProcess();
         }
     }
 }
