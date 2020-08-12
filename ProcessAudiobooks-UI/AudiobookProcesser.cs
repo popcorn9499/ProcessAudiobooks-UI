@@ -55,10 +55,6 @@ namespace ProcessAudiobooks_UI
                             {
                                 System.IO.File.Copy(file, file.Replace(file, destFolder + "\\" + fileName), true);
                             }
-
-
-                            
-
                             /**/
 
 
@@ -68,6 +64,13 @@ namespace ProcessAudiobooks_UI
                             newFile = tbRemotePath.Text + newFile.Replace('\\', '/');
                             MessageBox.Show(newFile);*/
                         }
+                        //Create Command
+
+                        String command = tbCommand.Text;
+                        command = command.Replace("%Name%", book.Name).Replace("%outputName%", book.outputName).Replace("%Artist%",book.Artist).Replace("%Album%", book.Album)
+                            .Replace("%Genre%", book.Genre).Replace("%Year%", book.Year).Replace("%Writer%", book.Writer);
+                        MessageBox.Show(command);
+
                     }
                 }
             }
