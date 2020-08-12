@@ -29,6 +29,9 @@
         <TextBox x:Name="tbGenre" HorizontalAlignment="Left" Margin="57,120,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbYear" HorizontalAlignment="Left" Margin="48,140,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbWriter" HorizontalAlignment="Left" Margin="56,160,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Output Directory:" HorizontalAlignment="Left" Margin="6,336,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="108,339,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnFindLocalPathDirectory_Click"/>
+        <TextBox x:Name="tbOutputPath" HorizontalAlignment="Left" Margin="6,362,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="67"/>
     </Grid>
 
 </Window>

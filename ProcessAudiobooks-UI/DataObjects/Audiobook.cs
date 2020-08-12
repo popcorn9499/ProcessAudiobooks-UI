@@ -11,15 +11,16 @@ namespace ProcessAudiobooks_UI.DataObjects
         public string Name { set; get; }
         public string outputName { set; get; }
         public string Artist { set; get; }
-        public String Album { set; get; }
-        public String Genre { set; get; }
-        public String Year { set; get; }
-        public String Writer { set; get; }
+        public string Album { set; get; }
+        public string Genre { set; get; }
+        public string Year { set; get; }
+        public string Writer { set; get; }
         public DataObjects.AudiobookProcessingStatus Status { set; get; }
-        public List<String> FileList;
+        public List<string> FileList;
+        public string outputPath;
 
 
-        public Audiobook(string Name, string outputName,string Artist, string Album, string Genre, string Year, string Writer, List<string> FileList)
+        public Audiobook(string Name, string outputName,string Artist, string Album, string Genre, string Year, string Writer, List<string> FileList, string outputPath)
         {
             this.Name = Name;
             this.outputName = outputName;
@@ -30,6 +31,7 @@ namespace ProcessAudiobooks_UI.DataObjects
             this.Writer = Writer;
             this.Status = DataObjects.AudiobookProcessingStatus.Ready;
             this.FileList = FileList;
+            this.outputPath = outputPath;
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Interop;
 using System.Reflection;
 using ProcessAudiobooks_UI.DataObjects;
+using Ookii.Dialogs.Wpf;
 
 namespace ProcessAudiobooks_UI
 {
@@ -23,7 +24,8 @@ namespace ProcessAudiobooks_UI
     public partial class AddAudiobookWindow : Window
     {
 
-       public DataObjects.Audiobook book;
+        public bool outputPathManuallySet = false;
+        public DataObjects.Audiobook book;
 
         public AddAudiobookWindow()
         {
@@ -41,6 +43,7 @@ namespace ProcessAudiobooks_UI
             tbGenre.Text = audiobook.Genre;
             tbYear.Text = audiobook.Year;
             tbWriter.Text = audiobook.Writer;
+            tbOutputPath.Text = audiobook.outputPath;
             foreach (String data in audiobook.FileList)
             {
                 lvListFiles.Items.Add(data);
@@ -78,10 +81,20 @@ namespace ProcessAudiobooks_UI
                 lvListFiles.Items.Clear();
         }
 
+        private void btnFindLocalPathDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog openFolderDialog = new VistaFolderBrowserDialog();
+            if (openFolderDialog.ShowDialog() == true)
+            {
+                tbOutputPath.Text = openFolderDialog.SelectedPath;
+                outputPathManuallySet = true;
+            }
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             List<String> fileList = lvListFiles.Items.Cast<String>().ToList();
-            book = new DataObjects.Audiobook(tbName.Text,tbOutputName.Text,tbArtist.Text,tbAlbum.Text,tbGenre.Text, tbYear.Text, tbWriter.Text, fileList);
+            book = new DataObjects.Audiobook(tbName.Text,tbOutputName.Text,tbArtist.Text,tbAlbum.Text,tbGenre.Text, tbYear.Text, tbWriter.Text, fileList, tbOutputPath.Text);
             
         }
     }
