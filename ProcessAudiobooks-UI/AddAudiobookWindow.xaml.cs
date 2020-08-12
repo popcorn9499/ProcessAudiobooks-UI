@@ -31,7 +31,22 @@ namespace ProcessAudiobooks_UI
             
         }
 
-        private void listFiles_Drop(object sender, DragEventArgs e)
+        public AddAudiobookWindow(DataObjects.Audiobook audiobook)
+        {
+            InitializeComponent();
+            tbName.Text = audiobook.Name;
+            tbOutputName.Text = audiobook.outputName;
+            tbAlbum.Text = audiobook.Album;
+            tbGenre.Text = audiobook.Genre;
+            tbYear.Text = audiobook.Year;
+            tbWriter.Text = audiobook.Writer;
+            foreach (String data in audiobook.FileList)
+            {
+                lvListFiles.Items.Add(data);
+            }
+        }
+
+            private void listFiles_Drop(object sender, DragEventArgs e)
         {
             string[] droppedFiles = null;
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) //checks if we have any dropped files and adds them.
