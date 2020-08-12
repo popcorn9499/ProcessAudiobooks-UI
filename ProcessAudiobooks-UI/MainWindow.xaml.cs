@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -50,17 +50,57 @@ namespace ProcessAudiobooks_UI
 
         private void btnAddBook_Click(object sender, RoutedEventArgs e)
         {
-            AddAudiobookWindow x = new AddAudiobookWindow();
-            x.ShowDialog(); //used show dialog to keep the window open for an extended perikod of time
-            eLvAudiobook.Items.Add(x.book);
-            //Handle empty windows
+            DataObjects.Audiobook audiobook = null;
+            AddAudiobookWindow audiobookWindow;
+            bool looped = false;
+            do
+            {
+                if (!looped)
+                {
+                    audiobookWindow = new AddAudiobookWindow();
+                }
+                else
+                {
+                    audiobookWindow = new AddAudiobookWindow(audiobook);
+                }
+                audiobookWindow.ShowDialog(); //used show dialog to keep the window open for an extended perikod of time
+                audiobook = audiobookWindow.book;
+
+                //Handle empty windows
+                if (audiobook.Name.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("Please set name to something");
+                }
+                if (audiobook.outputName.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("Please set Output Name to something");
+                }
+                looped = true;
+            } while (audiobook.Name.Equals("") || audiobook.outputName.Equals(""));
+            eLvAudiobook.Items.Add(audiobook);
         }
 
         private void btnEditBook_Click(object sender, RoutedEventArgs e)
         {
-            DataObjects.Audiobook selected = (DataObjects.Audiobook)eLvAudiobook.SelectedItem;
-            AddAudiobookWindow x = new AddAudiobookWindow(selected);
-            x.ShowDialog();
+            DataObjects.Audiobook audiobook = (DataObjects.Audiobook)eLvAudiobook.SelectedItem; ;
+            AddAudiobookWindow audiobookWindow;
+            do
+            {
+                audiobookWindow = new AddAudiobookWindow(audiobook);
+                audiobookWindow.ShowDialog(); //used show dialog to keep the window open for an extended perikod of time
+                audiobook = audiobookWindow.book;
+
+                //Handle empty windows
+                if (audiobook.Name.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("Please set name to something");
+                }
+                if (audiobook.outputName.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("Please set Output Name to something");
+                }
+            } while (audiobook.Name.Equals("") || audiobook.outputName.Equals(""));
+            eLvAudiobook.Items.Add(audiobook);
         }
 
         private void btnDeleteBook_Click(object sender, RoutedEventArgs e)
