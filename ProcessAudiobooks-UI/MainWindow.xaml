@@ -26,10 +26,10 @@
                     <Button x:Name="btnEditBook" Content="Edit Book" HorizontalAlignment="Left" Margin="4,46,0,0" VerticalAlignment="Top" Click="btnEditBook_Click" Height="26" Width="82"/>
                     <Button x:Name="btnAddBook" Content="Add Book" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top" Click="btnAddBook_Click" Width="82" Height="26"/>
                     <Button x:Name="btnDeleteBook" Content="Delete Book" HorizontalAlignment="Left" Margin="4,86,0,0" VerticalAlignment="Top" Click="btnDeleteBook_Click" Height="26" Width="82"/>
-                    <Button x:Name="btnStart" HorizontalAlignment="Left" Margin="4,124,0,0" Width="82" Height="40" VerticalAlignment="Top">
+                    <Button x:Name="btnStartCreateAudiobooks" HorizontalAlignment="Left" Margin="4,124,0,0" Width="82" Height="40" VerticalAlignment="Top" Click="btnStartCreateAudiobooks_Click">
                         <TextBlock Text="Start Creating Audiobooks" TextWrapping="Wrap" Cursor="" Height="34"/>
                     </Button>
-                    <Button HorizontalAlignment="Left" Margin="4,174,0,0" VerticalAlignment="Top" Height="40" Width="82">
+                    <Button x:Name="btnStopCreateAudiobooks" HorizontalAlignment="Left" Margin="4,174,0,0" VerticalAlignment="Top" Height="40" Width="82" Click="btnStopCreateAudiobooks_Click">
                         <TextBlock Text="Stop Creating Audiobooks" TextWrapping="Wrap" Height="49"/>
                     </Button>
 

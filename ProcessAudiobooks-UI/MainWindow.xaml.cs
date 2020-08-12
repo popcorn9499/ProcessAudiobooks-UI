@@ -156,5 +156,15 @@ namespace ProcessAudiobooks_UI
             Settings.Default.remotePath = tbRemotePath.Text;
             Settings.Default.Save();
         }
+
+        private void btnStartCreateAudiobooks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnStopCreateAudiobooks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
