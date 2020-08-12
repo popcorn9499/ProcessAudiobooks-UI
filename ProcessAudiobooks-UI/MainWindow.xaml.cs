@@ -31,6 +31,7 @@ namespace ProcessAudiobooks_UI
     public partial class MainWindow : Window
     {
         public int x;
+        public ssh sshClient = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -107,6 +108,33 @@ namespace ProcessAudiobooks_UI
             {
                 eLvAudiobook.Items.Remove(eachItem);
             }
+        }
+
+        private void btnSshTestConnection_Click(object sender, RoutedEventArgs e)
+        {
+            string ip, username, password;
+            int port;
+
+            if (!int.TryParse(tbSshPort.Text, out port))
+            {
+                System.Windows.MessageBox.Show("Please Specify a integer for the port!");
+                return;
+            }
+
+            ip = tbSshIP.Text;
+            username = tbSshUsername.Text;
+            password = pbSshPassword.Password;
+            try
+            {
+                sshClient = new ssh(ip, port, username, password);
+            }
+            catch
+            {
+                sshClient = null;
+                return;
+            }
+            System.Windows.MessageBox.Show("Connection Sucessful");
+
         }
     }
 }

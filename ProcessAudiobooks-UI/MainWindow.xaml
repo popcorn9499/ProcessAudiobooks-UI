@@ -44,12 +44,14 @@
                         <Label Content="IP Address:" HorizontalAlignment="Left" Margin="514,27,0,0" VerticalAlignment="Top"/>
                         <Label Content="Username:" HorizontalAlignment="Left" Margin="514,57,0,0" VerticalAlignment="Top"/>
                         <Label Content="Password:" HorizontalAlignment="Left" Margin="514,88,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbSshIP" HorizontalAlignment="Left" Margin="587,32,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="231" Height="21"/>
+                        <TextBox x:Name="tbSshIP" HorizontalAlignment="Left" Margin="587,32,0,0" Text="127.0.0.1" TextWrapping="Wrap" VerticalAlignment="Top" Width="231" Height="21"/>
                         <TextBox x:Name="tbSshUsername" HorizontalAlignment="Left" Margin="587,61,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
-                        <PasswordBox x:Name="pbSshPassword" HorizontalAlignment="Left" Margin="587,94,0,474" Width="154"/>
+
                         <Label Content="Port:" HorizontalAlignment="Left" Margin="766,57,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbSshPort" HorizontalAlignment="Left" Margin="805,61,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBox x:Name="tbSshPort" HorizontalAlignment="Left" Margin="805,61,0,0" Text="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                         <Label HorizontalAlignment="Left" Margin="507,167,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnSshTestConnection" Content="Test Connection" HorizontalAlignment="Left" Margin="777,94,0,0" VerticalAlignment="Top" Click="btnSshTestConnection_Click" RenderTransformOrigin="3.808,0.305"/>
+                        <PasswordBox x:Name="pbSshPassword" HorizontalAlignment="Left" Margin="581,94,0,0" VerticalAlignment="Top" Width="154"/>
 
                     </Grid>
                     <Label Content="Operation Path Remote:" HorizontalAlignment="Left" Margin="528,233,0,0" VerticalAlignment="Top"/>
