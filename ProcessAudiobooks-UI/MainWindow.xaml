@@ -37,7 +37,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Setting">
-                <Grid Background="#FF979393">
+                <Grid Background="#FF979393" Margin="1,0,-1,0">
                     <Grid/>
                     <GroupBox Header="SSH Connection" Margin="498,10,10,435"/>
                     <Grid>
@@ -51,16 +51,22 @@
                         <TextBox x:Name="tbSshPort" HorizontalAlignment="Left" Margin="805,61,0,0" Text="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                         <Label HorizontalAlignment="Left" Margin="507,167,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnSshTestConnection" Content="Test Connection" HorizontalAlignment="Left" Margin="777,94,0,0" VerticalAlignment="Top" Click="btnSshTestConnection_Click" RenderTransformOrigin="3.808,0.305"/>
-                        
+
 
                     </Grid>
-                    <Label Content="Operation Path Remote:" HorizontalAlignment="Left" Margin="528,233,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tbLocalPath" HorizontalAlignment="Left" Margin="528,210,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="406"/>
-                    <Label Content="Operation Path Local:" HorizontalAlignment="Left" Margin="528,179,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tbRemotePath" HorizontalAlignment="Left" Margin="528,264,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="406"/>
-                    <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="656,182,0,0" VerticalAlignment="Top" Click="btnFindLocalPathDirectory_Click"/>
-                    <Label Content="Command:" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Margin="10,52,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="467"/>
+                    <Label Content="Operation Path Remote:" HorizontalAlignment="Left" Margin="12,314,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbLocalPath" HorizontalAlignment="Left" Margin="10,281,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="406"/>
+                    <Label Content="Operation Path Local:" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbRemotePath" HorizontalAlignment="Left" Margin="10,340,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="406"/>
+                    <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="133,258,0,0" VerticalAlignment="Top" Click="btnFindLocalPathDirectory_Click"/>
+                    <Label Content="Command: (variables as follows)" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Margin="10,210,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="467"/>
+                    <Label Content="'%Name%' being name" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top"/>
+                    <Label Content="'%outputName%' being Output Name" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top"/>
+                    <Label Content="'%Album%' Being Album" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top"/>
+                    <Label Content="'%Genre%' Being Genre" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top"/>
+                    <Label Content="'%Year%' Being Year" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top"/>
+                    <Label Content="'%Writer%' Being Writer" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>
