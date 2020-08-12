@@ -1,4 +1,4 @@
-﻿using Renci.SshNet;
+using Renci.SshNet;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -11,10 +11,10 @@ namespace ProcessAudiobooks_UI
 {
     public class ssh
     {
-        private string ip { get; set; }
-        private int port { get; set; }
-        private string username { get; set; }
-        private string password { get; set; }
+        public string ip { get; set; }
+        public int port { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
 
         private SshClient client;
 
