@@ -8,8 +8,9 @@ namespace ProcessAudiobooks_UI.DataObjects
 {
     public class Audiobook
     {
-        public String Name { set; get; }
-        public String outputName { set; get; }
+        public string Name { set; get; }
+        public string outputName { set; get; }
+        public string Artist { set; get; }
         public String Album { set; get; }
         public String Genre { set; get; }
         public String Year { set; get; }
@@ -18,10 +19,11 @@ namespace ProcessAudiobooks_UI.DataObjects
         public List<String> FileList;
 
 
-        public Audiobook(String Name, String outputName, String Album, String Genre, String Year, String Writer, List<String> FileList)
+        public Audiobook(string Name, string outputName,string Artist, string Album, string Genre, string Year, string Writer, List<string> FileList)
         {
             this.Name = Name;
             this.outputName = outputName;
+            this.Artist = Artist
             this.Album = Album;
             this.Genre = Genre;
             this.Year = Year;
