@@ -1,4 +1,4 @@
-﻿using Renci.SshNet;
+using Renci.SshNet;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,10 +8,18 @@ using System.Threading.Tasks;
 
 namespace ProcessAudiobooks_UI
 {
-    class ssh
+    public class ssh
     {
-         public ssh() {
+        private string ip { get; set; }
+        private int port { get; set; }
+        private string username { get; set; }
+        private string password { get; set; }
 
+        public ssh(string ip, int port, string username, string password) {
+            this.ip = ip;
+            this.port = port;
+            this.username = username;
+            this.password = password;
             //Console.WriteLine("Starting Audiobook Processor");
             var tsk = TestMethod();
             for (int i = 0; i< 5; i++)
