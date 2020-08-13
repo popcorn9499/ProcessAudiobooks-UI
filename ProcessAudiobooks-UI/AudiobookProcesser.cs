@@ -1,4 +1,4 @@
-﻿using ProcessAudiobooks_UI.CustomControls;
+using ProcessAudiobooks_UI.CustomControls;
 using Renci.SshNet;
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace ProcessAudiobooks_UI
             this.eLvAudiobook = eLvAudiobook;
         } 
 
-        public async void StartProcess(ssh sshClient)
+        public async Task StartProcess(ssh sshClient)
         {
             if (this.processing == Processing.Stopped) //if not started start.
             {
