@@ -15,6 +15,7 @@ using System.Windows.Interop;
 using System.Reflection;
 using ProcessAudiobooks_UI.DataObjects;
 using Ookii.Dialogs.Wpf;
+using System.IO;
 
 namespace ProcessAudiobooks_UI
 {
@@ -64,6 +65,40 @@ namespace ProcessAudiobooks_UI
             {
                 lvListFiles.Items.Add(s);
             }
+            //get output path directory automatically
+            if (!this.outputPathManuallySet)
+            {
+                string file = lvListFiles.Items[0].ToString();
+                FileAttributes attr = File.GetAttributes(file);
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                { //handling for a directory
+                    string[] fileSplit = file.Split('\\');
+                    string outputDirPath;
+                    if (fileSplit.Length > 1)
+                    {
+                        List<string> fileSplitList = fileSplit.ToList();
+                        fileSplitList.RemoveAt(fileSplit.Length - 1);
+                        char x = '\\';
+                        outputDirPath = string.Join(x, fileSplitList);
+                    }
+                    else
+                    { //if its in the root folder of a drive
+                        outputDirPath = fileSplit[0];
+                    }
+                    tbOutputPath.Text = outputDirPath;
+                }
+                else
+                { //handling for a file
+                    string[] fileSplit = file.Split('\\');
+                    string outputDirPath;
+                    List<string> fileSplitList = fileSplit.ToList();
+                    fileSplitList.RemoveAt(fileSplit.Length - 1);
+                    char x = '\\';
+                    outputDirPath = string.Join(x, fileSplitList);
+                    tbOutputPath.Text = outputDirPath;
+                }
+            }
+
         }
 
         private void btnClearSelectedFiles_Click(object sender, RoutedEventArgs e)
