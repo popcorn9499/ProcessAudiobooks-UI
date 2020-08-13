@@ -1,4 +1,4 @@
-﻿using ProcessAudiobooks_UI.CustomControls;
+using ProcessAudiobooks_UI.CustomControls;
 using Renci.SshNet;
 using System;
 using System.Collections.Generic;
@@ -37,6 +37,8 @@ namespace ProcessAudiobooks_UI
                 {
                     if (book.Status == DataObjects.AudiobookProcessingStatus.Ready)
                     {
+                        ConsoleWindow.WriteInfo("Starting Audiobook: " + book.Name);
+                        ConsoleWindow.WriteInfo("Copying Audiobook to processing path");
                         string destFolder = tbLocalPath.Text + "\\" + book.outputName;
                         Directory.CreateDirectory(destFolder);
                         string[] fileList = book.FileList.ToArray();
@@ -57,14 +59,6 @@ namespace ProcessAudiobooks_UI
                             {
                                 System.IO.File.Copy(file, file.Replace(file, destFolder + "\\" + fileName), true);
                             }
-                            /**/
-
-
-                            /*int startPos = file.CompareTo(tbLocalPath.Text);
-                            startPos = startPos + tbLocalPath.Text.Length-1;
-                            string newFile = file.Substring(startPos);
-                            newFile = tbRemotePath.Text + newFile.Replace('\\', '/');
-                            MessageBox.Show(newFile);*/
                         }
                         //Create Command
 
@@ -76,14 +70,14 @@ namespace ProcessAudiobooks_UI
                         string commandDestFolder = tbRemotePath.Text + "/" + book.outputName;
 
                         //Run Command
+                        ConsoleWindow.WriteInfo("Copying book to its output directory");
                         await sshClient.RunCommand("cd " + commandDestFolder + "&&" +command);
 
                         //copy files back
 
-                        
+                        ConsoleWindow.WriteInfo("Copying book to its output directory");
                         this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", book.outputPath + "\\output\\");
                         ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
-
                     }
                 }
             }
