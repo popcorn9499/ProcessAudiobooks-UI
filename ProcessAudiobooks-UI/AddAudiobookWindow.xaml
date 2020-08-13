@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessAudiobooks_UI"
         mc:Ignorable="d"
-        Title="AddAudiobookWindow" Height="450" Width="800"  AllowDrop="True" Background="#FF979393" Closing="Window_Closing">
+        Title="AddAudiobookWindow" Height="450" Width="800"  AllowDrop="True" Background="#FF979393">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -29,9 +29,10 @@
         <TextBox x:Name="tbGenre" HorizontalAlignment="Left" Margin="57,120,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbYear" HorizontalAlignment="Left" Margin="48,140,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbWriter" HorizontalAlignment="Left" Margin="56,160,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Output Directory:" HorizontalAlignment="Left" Margin="6,336,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="108,339,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnFindLocalPathDirectory_Click"/>
-        <TextBox x:Name="tbOutputPath" HorizontalAlignment="Left" Margin="6,362,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="67"/>
+        <Label Content="Output Directory:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+        <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="108,0,0,0" Grid.Row="1" VerticalAlignment="Center" Click="btnFindLocalPathDirectory_Click"/>
+        <TextBox x:Name="tbOutputPath" HorizontalAlignment="Left" Margin="6,235,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="67"/>
+        <Button x:Name="tbSave" Content="Save And Close" Margin="10,383,677,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="24" Click="tbSave_Click"/>
     </Grid>
 
 </Window>

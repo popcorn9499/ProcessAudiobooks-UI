@@ -74,6 +74,8 @@ namespace ProcessAudiobooks_UI
                     audiobookWindow = new AddAudiobookWindow(audiobook);
                 }
                 audiobookWindow.ShowDialog(); //used show dialog to keep the window open for an extended perikod of time
+                if (audiobookWindow.book == null) //if we never set a audiobook we know it was never configured therefore just stop trying to add it to the listview
+                    return;
                 audiobook = audiobookWindow.book;
 
                 //Handle empty windows
