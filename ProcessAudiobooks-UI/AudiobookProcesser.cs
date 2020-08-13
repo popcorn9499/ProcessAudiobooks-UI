@@ -1,4 +1,4 @@
-using ProcessAudiobooks_UI.CustomControls;
+﻿using ProcessAudiobooks_UI.CustomControls;
 using Renci.SshNet;
 using System;
 using System.Collections.Generic;
@@ -19,13 +19,16 @@ namespace ProcessAudiobooks_UI
         private EnhancedListView eLvAudiobook;
 
         private Processing processing = Processing.Stopped;
+        private Button btnStartCreateAudiobooks, btnStopCreateAudiobooks;
 
-        public AudiobookProcesser(TextBox tbCommand, TextBox tbLocalPath, TextBox tbRemotePath, EnhancedListView eLvAudiobook)
+        public AudiobookProcesser(TextBox tbCommand, TextBox tbLocalPath, TextBox tbRemotePath, EnhancedListView eLvAudiobook, Button btnStartCreateAudiobooks , Button btnStopCreateAudiobooks)
         {
             this.tbCommand = tbCommand;
             this.tbLocalPath = tbLocalPath;
             this.tbRemotePath = tbRemotePath;
             this.eLvAudiobook = eLvAudiobook;
+            this.btnStopCreateAudiobooks = btnStopCreateAudiobooks;
+            this.btnStartCreateAudiobooks = btnStartCreateAudiobooks;
         } 
 
         public async Task StartProcess(ssh sshClient)
@@ -33,6 +36,8 @@ namespace ProcessAudiobooks_UI
             if (this.processing == Processing.Stopped) //if not started start.
             {
                 this.processing = Processing.Started;
+                this.btnStartCreateAudiobooks.IsEnabled = false;
+                this.btnStopCreateAudiobooks.IsEnabled = true;
                 foreach (DataObjects.Audiobook book in eLvAudiobook.Items)
                 {
                     if (book.Status == DataObjects.AudiobookProcessingStatus.Ready)
@@ -85,6 +90,8 @@ namespace ProcessAudiobooks_UI
                 }
             }
             this.processing = Processing.Stopped;
+            this.btnStartCreateAudiobooks.IsEnabled = true;
+            this.btnStopCreateAudiobooks.IsEnabled = false;
         }
 
         private void CopyDirectory(string file, string trueDestFolder)

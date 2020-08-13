@@ -29,7 +29,7 @@
                     <Button x:Name="btnStartCreateAudiobooks" HorizontalAlignment="Left" Margin="4,124,0,0" Width="82" Height="40" VerticalAlignment="Top" Click="btnStartCreateAudiobooks_Click">
                         <TextBlock Text="Start Creating Audiobooks" TextWrapping="Wrap" Cursor="" Height="34"/>
                     </Button>
-                    <Button x:Name="btnStopCreateAudiobooks" HorizontalAlignment="Left" Margin="4,174,0,0" VerticalAlignment="Top" Height="40" Width="82" Click="btnStopCreateAudiobooks_Click">
+                    <Button x:Name="btnStopCreateAudiobooks" HorizontalAlignment="Left" Margin="4,174,0,0" VerticalAlignment="Top" Height="40" Width="82" Click="btnStopCreateAudiobooks_Click" IsEnabled="False">
                         <TextBlock Text="Stop Creating Audiobooks" TextWrapping="Wrap" Height="49"/>
                     </Button>
 

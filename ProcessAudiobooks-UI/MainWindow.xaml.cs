@@ -48,7 +48,7 @@ namespace ProcessAudiobooks_UI
             tbCommand.Text = Settings.Default.remoteCommand;
             tbLocalPath.Text = Settings.Default.localPath;
             tbRemotePath.Text = Settings.Default.remotePath;
-            processor = new AudiobookProcesser(tbCommand, tbLocalPath, tbRemotePath, eLvAudiobook);
+            processor = new AudiobookProcesser(tbCommand, tbLocalPath, tbRemotePath, eLvAudiobook, btnStartCreateAudiobooks, btnStopCreateAudiobooks);
         }
 
         private void btnFindLocalPathDirectory_Click(object sender, RoutedEventArgs e)
