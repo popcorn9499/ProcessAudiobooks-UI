@@ -44,7 +44,7 @@ namespace ProcessAudiobooks_UI
                     {
                         if (this.processing == Processing.Stopped)
                             break;
-
+                        book.Status = DataObjects.AudiobookProcessingStatus.Processing; //set audiobook status
                         ConsoleWindow.WriteInfo("Starting Audiobook: " + book.Name);
                         ConsoleWindow.WriteInfo("Copying Audiobook to processing path");
                         string destFolder = tbLocalPath.Text + "\\" + book.outputName;
@@ -86,6 +86,7 @@ namespace ProcessAudiobooks_UI
                         ConsoleWindow.WriteInfo("Copying book to its output directory");
                         this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", book.outputPath + "\\output\\");
                         ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
+                        book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
                     }
                 }
             }
