@@ -59,6 +59,7 @@ namespace ProcessAudiobooks_UI
                         if (line != null)
                         {
                             ConsoleWindow.WriteInfo("[SSH] " + line);
+                            await Task.Delay(10); //add a small delay to prevent this loop from going out of control
                         }
                     }
                 }
