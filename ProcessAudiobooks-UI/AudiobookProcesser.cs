@@ -37,6 +37,9 @@ namespace ProcessAudiobooks_UI
                 {
                     if (book.Status == DataObjects.AudiobookProcessingStatus.Ready)
                     {
+                        if (this.processing == Processing.Stopped)
+                            break;
+
                         ConsoleWindow.WriteInfo("Starting Audiobook: " + book.Name);
                         ConsoleWindow.WriteInfo("Copying Audiobook to processing path");
                         string destFolder = tbLocalPath.Text + "\\" + book.outputName;
