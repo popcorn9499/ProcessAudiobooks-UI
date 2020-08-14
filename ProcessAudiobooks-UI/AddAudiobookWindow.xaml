@@ -11,24 +11,24 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Margin="238,5,0,0" Grid.RowSpan="1">Drop Files Here</Label>
-        <ListBox x:Name="lvListFiles" Grid.Row="1" Margin="238,36,0,8" Drop="listFiles_Drop" SelectionMode="Extended" Background="#FFC7C7C7"></ListBox>
-        <Button x:Name="btnClearSelectedFiles" Content="Clear Selected Files" HorizontalAlignment="Left" Margin="339,7,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearSelectedFiles_Click"/>
-        <Button x:Name="btnClearAllFiles" Content="Clear All Files" HorizontalAlignment="Left" Margin="458,7,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearAllFiles_Click"/>
-        <Label Content="Name: " HorizontalAlignment="Left" Margin="13,36,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Output Name:" HorizontalAlignment="Left" Margin="13,56,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Artist:" HorizontalAlignment="Left" Margin="13,76,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Album:" HorizontalAlignment="Left" Margin="13,96,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Genre:" HorizontalAlignment="Left" Margin="13,116,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Year:" HorizontalAlignment="Left" Margin="13,136,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Writer:" HorizontalAlignment="Left" Margin="13,156,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="56,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbOutputName" HorizontalAlignment="Left" Margin="98,60,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbArtist" HorizontalAlignment="Left" Margin="63,80,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbAlbum" HorizontalAlignment="Left" Margin="63,100,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbGenre" HorizontalAlignment="Left" Margin="57,120,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbYear" HorizontalAlignment="Left" Margin="48,140,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbWriter" HorizontalAlignment="Left" Margin="56,160,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Margin="238,149,465,252" Grid.RowSpan="1" Grid.Row="1">Drop Files Here</Label>
+        <ListBox x:Name="lvListFiles" Grid.Row="1" Margin="231,177,7,10" Drop="listFiles_Drop" SelectionMode="Extended" Background="#FFC7C7C7"></ListBox>
+        <Button x:Name="btnClearSelectedFiles" Content="Clear Selected Files" HorizontalAlignment="Center" Margin="0,151,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearSelectedFiles_Click"/>
+        <Button x:Name="btnClearAllFiles" Content="Clear All Files" HorizontalAlignment="Left" Margin="458,151,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnClearAllFiles_Click"/>
+        <Label Content="Name: " HorizontalAlignment="Left" Margin="13,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Output Name:" HorizontalAlignment="Left" Margin="13,31,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Artist:" HorizontalAlignment="Left" Margin="20,53,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Album:" HorizontalAlignment="Left" Margin="17,76,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Genre:" HorizontalAlignment="Left" Margin="17,98,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.676,-0.409"/>
+        <Label Content="Year:" HorizontalAlignment="Left" Margin="24,143,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Writer:" HorizontalAlignment="Left" Margin="19,118,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="56,13,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="708"/>
+        <TextBox x:Name="tbOutputName" HorizontalAlignment="Left" Margin="98,35,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="666"/>
+        <TextBox x:Name="tbArtist" HorizontalAlignment="Left" Margin="63,57,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="701"/>
+        <TextBox x:Name="tbAlbum" HorizontalAlignment="Left" Margin="63,80,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="701"/>
+        <TextBox x:Name="tbGenre" HorizontalAlignment="Left" Margin="63,102,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Text="Audiobooks"/>
+        <TextBox x:Name="tbYear" HorizontalAlignment="Left" Margin="59,149,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbWriter" HorizontalAlignment="Left" Margin="63,125,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
         <Label Content="Output Directory:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
         <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="108,0,0,0" Grid.Row="1" VerticalAlignment="Center" Click="btnFindLocalPathDirectory_Click"/>
         <TextBox x:Name="tbOutputPath" HorizontalAlignment="Left" Margin="6,235,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="67"/>
