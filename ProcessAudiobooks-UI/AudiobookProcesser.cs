@@ -1,4 +1,4 @@
-using ProcessAudiobooks_UI.CustomControls;
+﻿using ProcessAudiobooks_UI.CustomControls;
 using Renci.SshNet;
 using System;
 using System.Collections.Generic;
@@ -45,6 +45,7 @@ namespace ProcessAudiobooks_UI
                         if (this.processing == Processing.Stopped)
                             break;
                         book.Status = DataObjects.AudiobookProcessingStatus.Processing; //set audiobook status
+                        this.eLvAudiobook.Items.Refresh();
                         ConsoleWindow.WriteInfo("Starting Audiobook: " + book.Name);
                         ConsoleWindow.WriteInfo("Copying Audiobook to processing path");
                         string destFolder = tbLocalPath.Text + "\\" + book.outputName;
@@ -90,6 +91,7 @@ namespace ProcessAudiobooks_UI
                         Directory.Delete(tbLocalPath.Text + "\\" + book.outputName, true);
                         ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
                         book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
+                        this.eLvAudiobook.Items.Refresh();
                     }
                 }
             } 
