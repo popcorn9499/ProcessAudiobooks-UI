@@ -1,4 +1,4 @@
-﻿using ProcessAudiobooks_UI.CustomControls;
+using ProcessAudiobooks_UI.CustomControls;
 using Renci.SshNet;
 using System;
 using System.Collections.Generic;
@@ -85,11 +85,14 @@ namespace ProcessAudiobooks_UI
 
                         ConsoleWindow.WriteInfo("Copying book to its output directory");
                         this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", book.outputPath + "\\output\\");
+
+                        ConsoleWindow.WriteInfo("Cleaning up!");
+                        Directory.Delete(tbLocalPath.Text + "\\" + book.outputName, true);
                         ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
                         book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
                     }
                 }
-            }
+            } 
             this.processing = Processing.Stopped;
             this.btnStartCreateAudiobooks.IsEnabled = true;
             this.btnStopCreateAudiobooks.IsEnabled = false;
