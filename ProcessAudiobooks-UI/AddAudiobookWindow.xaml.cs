@@ -134,7 +134,7 @@ namespace ProcessAudiobooks_UI
         private void tbSave_Click(object sender, RoutedEventArgs e)
         {
             List<String> fileList = lvListFiles.Items.Cast<String>().ToList();
-            book = new DataObjects.Audiobook(tbName.Text, tbOutputName.Text, tbArtist.Text, tbAlbum.Text, tbGenre.Text, tbYear.Text, tbWriter.Text, fileList, tbOutputPath.Text);
+            book = new DataObjects.Audiobook(tbName.Text, tbOutputName.Text + ".m4b" , tbArtist.Text, tbAlbum.Text, tbGenre.Text, tbYear.Text, tbWriter.Text, fileList, tbOutputPath.Text);
             this.Close();
         }
     }
