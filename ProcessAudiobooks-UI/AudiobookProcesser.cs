@@ -85,7 +85,7 @@ namespace ProcessAudiobooks_UI
                         //copy files back
 
                         ConsoleWindow.WriteInfo("Copying book to its output directory");
-                        this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", book.outputPath + "\\output\\");
+                        this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", book.outputPath);
 
                         ConsoleWindow.WriteInfo("Cleaning up!");
                         Directory.Delete(tbLocalPath.Text + "\\" + book.outputName, true);
