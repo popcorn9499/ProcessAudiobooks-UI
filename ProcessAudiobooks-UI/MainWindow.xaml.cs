@@ -48,6 +48,13 @@ namespace ProcessAudiobooks_UI
             tbCommand.Text = Settings.Default.remoteCommand;
             tbLocalPath.Text = Settings.Default.localPath;
             tbRemotePath.Text = Settings.Default.remotePath;
+
+            try //catch any errors for this new setting in case it doesnt exist yet
+            {
+                tbOutputDirOverride.Text = Settings.Default.overrideOutputDirectory;
+                cbOverrideOutputDir.IsChecked = Settings.Default.overrideOutputDirectoryBool;
+            }
+            catch { }
             processor = new AudiobookProcesser(tbCommand, tbLocalPath, tbRemotePath, eLvAudiobook, btnStartCreateAudiobooks, btnStopCreateAudiobooks);
         }
 
@@ -63,15 +70,20 @@ namespace ProcessAudiobooks_UI
             DataObjects.Audiobook audiobook = null;
             AddAudiobookWindow audiobookWindow;
             bool looped = false;
+            string outputDirOverride = "";
+            if ((bool)cbOverrideOutputDir.IsChecked)
+            {
+                outputDirOverride = tbOutputDirOverride.Text;
+            }
             do
             {
                 if (!looped)
                 {
-                    audiobookWindow = new AddAudiobookWindow();
+                    audiobookWindow = new AddAudiobookWindow(outputDirOverride);
                 }
                 else
                 {
-                    audiobookWindow = new AddAudiobookWindow(audiobook);
+                    audiobookWindow = new AddAudiobookWindow(audiobook, outputDirOverride);
                 }
                 audiobookWindow.ShowDialog(); //used show dialog to keep the window open for an extended perikod of time
                 if (audiobookWindow.book == null) //if we never set a audiobook we know it was never configured therefore just stop trying to add it to the listview
@@ -163,6 +175,8 @@ namespace ProcessAudiobooks_UI
             Settings.Default.remoteCommand = tbCommand.Text;
             Settings.Default.localPath = tbLocalPath.Text;
             Settings.Default.remotePath = tbRemotePath.Text;
+            Settings.Default.overrideOutputDirectory = tbOutputDirOverride.Text;
+            Settings.Default.overrideOutputDirectoryBool = (bool)cbOverrideOutputDir.IsChecked;
             Settings.Default.Save();
         }
 
@@ -176,6 +190,13 @@ namespace ProcessAudiobooks_UI
         private void btnStopCreateAudiobooks_Click(object sender, RoutedEventArgs e)
         {
             processor.StopProcess();
+        }
+
+        private void btnOutputDirPath_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog openFolderDialog = new VistaFolderBrowserDialog();
+            if (openFolderDialog.ShowDialog() == true)
+                tbOutputDirOverride.Text = openFolderDialog.SelectedPath;
         }
     }
 }

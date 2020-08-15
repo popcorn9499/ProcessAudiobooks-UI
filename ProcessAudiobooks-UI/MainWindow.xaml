@@ -68,6 +68,9 @@
                     <Label Content="'%Year%' Being Year" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top"/>
                     <Label Content="'%Writer%' Being Writer" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top"/>
                     <Label Content="%Artist% Being Artist" HorizontalAlignment="Left" Margin="11,99,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbOutputDirOverride" HorizontalAlignment="Left" Margin="10,483,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="544"/>
+                    <CheckBox x:Name="cbOverrideOutputDir" Content="Output Directory Override: " HorizontalAlignment="Left" Margin="11,463,0,0" VerticalAlignment="Top" AutomationProperties.HelpText="Enabled"/>
+                    <Button x:Name="btnOutputDirPath" Content="Find Path" HorizontalAlignment="Left" Margin="193,458,0,0" VerticalAlignment="Top" Click="btnOutputDirPath_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

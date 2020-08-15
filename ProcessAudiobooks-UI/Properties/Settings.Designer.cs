@@ -72,5 +72,29 @@ namespace ProcessAudiobooks_UI.Properties {
                 this["remotePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string overrideOutputDirectory {
+            get {
+                return ((string)(this["overrideOutputDirectory"]));
+            }
+            set {
+                this["overrideOutputDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool overrideOutputDirectoryBool {
+            get {
+                return ((bool)(this["overrideOutputDirectoryBool"]));
+            }
+            set {
+                this["overrideOutputDirectoryBool"] = value;
+            }
+        }
     }
 }

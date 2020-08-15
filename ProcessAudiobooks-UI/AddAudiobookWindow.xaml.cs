@@ -28,13 +28,17 @@ namespace ProcessAudiobooks_UI
         public bool outputPathManuallySet = false;
         public DataObjects.Audiobook book = null;
 
-        public AddAudiobookWindow()
+        public AddAudiobookWindow(string overrideDir = "")
         {
             InitializeComponent();
-            
+            if (!overrideDir.Equals(""))
+            {
+                tbOutputPath.Text = overrideDir;
+                outputPathManuallySet = true;
+            }
         }
 
-        public AddAudiobookWindow(DataObjects.Audiobook audiobook)
+        public AddAudiobookWindow(DataObjects.Audiobook audiobook, string overrideDir = "")
         {
             InitializeComponent();
             tbName.Text = audiobook.Name;
@@ -45,6 +49,11 @@ namespace ProcessAudiobooks_UI
             tbYear.Text = audiobook.Year;
             tbWriter.Text = audiobook.Writer;
             tbOutputPath.Text = audiobook.outputPath;
+            if (!overrideDir.Equals(""))
+            {
+                tbOutputPath.Text = overrideDir;
+                outputPathManuallySet = true;
+            }
             foreach (String data in audiobook.FileList)
             {
                 lvListFiles.Items.Add(data);
