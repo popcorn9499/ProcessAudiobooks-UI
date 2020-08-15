@@ -25,9 +25,9 @@ namespace ProcessAudiobooks_UI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/usr/bin/m4b-tool merge --adjust-for-ipod --jobs=4 --ffmpeg-threads=16 --force --" +
-            "name=%Name% --artist=%outputName% --album=%Album% --year=%Year% --genre=%Genre% " +
-            "--writer=%Writer% \'./\'")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/usr/bin/m4b-tool merge --adjust-for-ipod --jobs=32 --ffmpeg-threads=16 --force -" +
+            "-name=\"%Name%\" --artist=\"%Artist%\" --album=\"%Album%\" --year=\"%Year%\" --genre=\"%G" +
+            "enre%\" --writer=\"%Writer%\" \'./\' --output-file=\"%outputName%\"")]
         public string remoteCommand {
             get {
                 return ((string)(this["remoteCommand"]));
