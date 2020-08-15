@@ -73,7 +73,7 @@ namespace ProcessAudiobooks_UI
 
                         String command = tbCommand.Text;
                         string cmdOutputPath = "output/" + book.outputName;
-                        command = command.Replace("%Name%", book.Name).Replace("%outputName%", cmdOutputPath).Replace(" % Artist%",book.Artist).Replace("%Album%", book.Album)
+                        command = command.Replace("%Name%", book.Name).Replace("%outputName%", cmdOutputPath).Replace("% Artist%",book.Artist).Replace("%Album%", book.Album)
                             .Replace("%Genre%", book.Genre).Replace("%Year%", book.Year).Replace("%Writer%", book.Writer);
 
                         string commandDestFolder = tbRemotePath.Text + "/" + book.outputName;
