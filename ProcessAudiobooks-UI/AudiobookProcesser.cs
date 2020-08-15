@@ -80,7 +80,7 @@ namespace ProcessAudiobooks_UI
 
                         //Run Command
                         ConsoleWindow.WriteInfo("Copying book to its output directory");
-                        await sshClient.RunCommand("cd " + commandDestFolder + "&&" +command);
+                        await sshClient.RunCommand("cd \"" + commandDestFolder + "\" && " +command);
 
                         //copy files back
 
