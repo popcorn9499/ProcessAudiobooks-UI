@@ -1,4 +1,5 @@
 ﻿using ProcessAudiobooks_UI.CustomControls;
+using ProcessAudiobooks_UI.DataObjects;
 using Renci.SshNet;
 using System;
 using System.Collections.Generic;
@@ -73,8 +74,7 @@ namespace ProcessAudiobooks_UI
 
                         String command = tbCommand.Text;
                         string cmdOutputPath = "output/" + book.outputName;
-                        command = command.Replace("%Name%", book.Name).Replace("%outputName%", cmdOutputPath).Replace("%Artist%",book.Artist).Replace("%Album%", book.Album)
-                            .Replace("%Genre%", book.Genre).Replace("%Year%", book.Year).Replace("%Writer%", book.Writer);
+                        command = this.addVariables(command, cmdOutputPath, book);
 
                         string commandDestFolder = tbRemotePath.Text + "/" + book.outputName;
 
@@ -83,12 +83,12 @@ namespace ProcessAudiobooks_UI
                         await sshClient.RunCommand("cd \"" + commandDestFolder + "\" && " +command);
 
                         //copy files back
-
+                        string finalOutputPath = this.addVariables(book.outputPath, cmdOutputPath, book);
                         ConsoleWindow.WriteInfo("Copying book to its output directory");
-                        this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", book.outputPath);
+                        this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", finalOutputPath);
 
                         ConsoleWindow.WriteInfo("Cleaning up!");
-                        Directory.Delete(tbLocalPath.Text + "\\" + book.outputName, true);
+                        Directory.Delete(tbLocalPath.Text + "\\" + finalOutputPath, true);
                         ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
                         book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
                         this.eLvAudiobook.Items.Refresh();
@@ -112,6 +112,12 @@ namespace ProcessAudiobooks_UI
             foreach (string newPath in Directory.GetFiles(file, "*.*",
                 SearchOption.AllDirectories))
                 File.Copy(newPath, newPath.Replace(file, trueDestFolder), true);
+        }
+
+        public string addVariables(string data,string cmdOutputPath, Audiobook book)
+        {
+            return data.Replace("%Name%", book.Name).Replace("%outputName%", cmdOutputPath).Replace("%Artist%", book.Artist).Replace("%Album%", book.Album)
+                            .Replace("%Genre%", book.Genre).Replace("%Year%", book.Year).Replace("%Writer%", book.Writer);
         }
 
         public void StopProcess()
