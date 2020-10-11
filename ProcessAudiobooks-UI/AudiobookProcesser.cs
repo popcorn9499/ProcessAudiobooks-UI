@@ -104,6 +104,7 @@ namespace ProcessAudiobooks_UI
         {
             Directory.CreateDirectory(trueDestFolder);
             //Now Create all of the directories
+            string destPath;
             foreach (string dirPath in Directory.GetDirectories(file, "*",
                 SearchOption.AllDirectories))
                 Directory.CreateDirectory(dirPath.Replace(file, trueDestFolder));
@@ -111,7 +112,10 @@ namespace ProcessAudiobooks_UI
             //Copy all the files & Replaces any files with the same name
             foreach (string newPath in Directory.GetFiles(file, "*.*",
                 SearchOption.AllDirectories))
-                File.Copy(newPath, newPath.Replace(file, trueDestFolder), true);
+            {
+                destPath = newPath.Replace(file, trueDestFolder + "\\");
+                File.Copy(newPath, destPath, true);
+            }
         }
 
         public string addVariables(string data,string cmdOutputPath, Audiobook book)
