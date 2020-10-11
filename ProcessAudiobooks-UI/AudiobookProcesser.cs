@@ -1,4 +1,4 @@
-﻿using ProcessAudiobooks_UI.CustomControls;
+using ProcessAudiobooks_UI.CustomControls;
 using ProcessAudiobooks_UI.DataObjects;
 using Renci.SshNet;
 using System;
@@ -88,7 +88,7 @@ namespace ProcessAudiobooks_UI
                         this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", finalOutputPath);
 
                         ConsoleWindow.WriteInfo("Cleaning up!");
-                        Directory.Delete(tbLocalPath.Text + "\\" + finalOutputPath, true);
+                        Directory.Delete(tbLocalPath.Text + "\\" + book.outputName, true);
                         ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
                         book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
                         this.eLvAudiobook.Items.Refresh();
