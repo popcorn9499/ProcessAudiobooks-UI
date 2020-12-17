@@ -19,6 +19,7 @@ using ProcessAudiobooks_UI.Properties;
 using System.Windows.Forms;
 using Ookii.Dialogs.Wpf;
 using Newtonsoft.Json;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ProcessAudiobooks_UI
 {
@@ -38,12 +39,20 @@ namespace ProcessAudiobooks_UI
         {
             InitializeComponent();
             ConsoleWindow consoleObs = new ConsoleWindow();
-            if (!Settings.Default.sshConnectDetails.Equals("")) { 
-                sshClient = JsonConvert.DeserializeObject<ssh>(Settings.Default.sshConnectDetails);
-                tbSshIP.Text = sshClient.ip;
-                tbSshPort.Text = sshClient.port.ToString();
-                tbSshUsername.Text = sshClient.username;
-                pbSshPassword.Password = sshClient.password;
+            try
+            {
+                if (!Settings.Default.sshConnectDetails.Equals(""))
+                {
+                    sshClient = JsonConvert.DeserializeObject<ssh>(Settings.Default.sshConnectDetails);
+                    
+                    tbSshIP.Text = sshClient.ip;
+                    tbSshPort.Text = sshClient.port.ToString();
+                    tbSshUsername.Text = sshClient.username;
+                    pbSshPassword.Password = sshClient.password;
+                }
+            } catch (System.NullReferenceException)
+            {
+                MessageBox.Show("Invalid ssh information");
             }
             tbCommand.Text = Settings.Default.remoteCommand;
             tbLocalPath.Text = Settings.Default.localPath;
