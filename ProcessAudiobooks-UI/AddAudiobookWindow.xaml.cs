@@ -143,7 +143,10 @@ namespace ProcessAudiobooks_UI
         private void tbSave_Click(object sender, RoutedEventArgs e)
         {
             List<String> fileList = lvListFiles.Items.Cast<String>().ToList();
-            book = new DataObjects.Audiobook(tbName.Text, tbOutputName.Text + ".m4b" , tbArtist.Text, tbAlbum.Text, tbGenre.Text, tbYear.Text, tbWriter.Text, fileList, tbOutputPath.Text);
+            String outputName = tbOutputName.Text;
+            if (!outputName.Contains(".m4b")) //add the file extension if its missing
+                outputName = outputName + ".m4b";
+            book = new DataObjects.Audiobook(tbName.Text, outputName , tbArtist.Text, tbAlbum.Text, tbGenre.Text, tbYear.Text, tbWriter.Text, fileList, tbOutputPath.Text);
             this.Close();
         }
     }
