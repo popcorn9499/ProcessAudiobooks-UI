@@ -98,6 +98,7 @@ namespace ProcessAudiobooks_UI
             this.processing = Processing.Stopped;
             this.btnStartCreateAudiobooks.IsEnabled = true;
             this.btnStopCreateAudiobooks.IsEnabled = false;
+            MessageBox.Show("Completed the audiobooks!");
         }
 
         private void CopyDirectory(string file, string trueDestFolder)
