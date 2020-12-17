@@ -140,7 +140,7 @@ namespace ProcessAudiobooks_UI
 
         }
 
-        private void tbSave_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             List<String> fileList = lvListFiles.Items.Cast<String>().ToList();
             String outputName = tbOutputName.Text;
