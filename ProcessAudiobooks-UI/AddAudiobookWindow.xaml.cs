@@ -149,5 +149,11 @@ namespace ProcessAudiobooks_UI
             book = new DataObjects.Audiobook(tbName.Text, outputName , tbArtist.Text, tbAlbum.Text, tbGenre.Text, tbYear.Text, tbWriter.Text, fileList, tbOutputPath.Text);
             this.Close();
         }
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Do you really want to cancel?", "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+                this.Close();
+        }
     }
 }

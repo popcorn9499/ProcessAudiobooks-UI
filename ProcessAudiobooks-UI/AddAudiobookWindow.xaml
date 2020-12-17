@@ -33,6 +33,7 @@
         <Button x:Name="btnFindLocalPathDirectory" Content="Find Path" HorizontalAlignment="Left" Margin="108,0,0,0" Grid.Row="1" VerticalAlignment="Center" Click="btnFindLocalPathDirectory_Click"/>
         <TextBox x:Name="tbOutputPath" HorizontalAlignment="Left" Margin="6,235,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Height="67"/>
         <Button x:Name="btnSave" Content="Save And Close" Margin="10,383,677,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="24" Click="btnSave_Click"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="135,383,0,0" Grid.Row="1" VerticalAlignment="Top" Height="24" Width="43" Click="btnCancel_Click"/>
     </Grid>
 
 </Window>
