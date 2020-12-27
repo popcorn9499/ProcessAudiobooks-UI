@@ -1,4 +1,4 @@
-using ProcessAudiobooks_UI.CustomControls;
+﻿using ProcessAudiobooks_UI.CustomControls;
 using ProcessAudiobooks_UI.DataObjects;
 using Renci.SshNet;
 using System;
@@ -79,7 +79,7 @@ namespace ProcessAudiobooks_UI
 
                         //Run Command
                         ConsoleWindow.WriteInfo("Copying book to its output directory");
-                        await sshClient.RunCommand("cd \"" + commandDestFolder + "\" && " +command);
+                        await sshClient.RunCommand("cd \"" + commandDestFolder + "\" && " + command);
 
                         //copy files back
                         string finalOutputPath = this.addVariables(book.outputPath, cmdOutputPath, book);
