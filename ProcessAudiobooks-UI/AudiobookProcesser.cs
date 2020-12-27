@@ -1,4 +1,4 @@
-﻿using ProcessAudiobooks_UI.CustomControls;
+using ProcessAudiobooks_UI.CustomControls;
 using ProcessAudiobooks_UI.DataObjects;
 using Renci.SshNet;
 using System;
@@ -41,10 +41,9 @@ namespace ProcessAudiobooks_UI
                 this.btnStopCreateAudiobooks.IsEnabled = true;
                 foreach (DataObjects.Audiobook book in eLvAudiobook.Items)
                 {
-                    if (book.Status == DataObjects.AudiobookProcessingStatus.Ready)
+                    //if the book is ready to be processed and Processing hasnt been set to stop indicating we should stop mid execution of this loop. 
+                    if (book.Status == DataObjects.AudiobookProcessingStatus.Ready && this.processing != Processing.Stopped) 
                     {
-                        if (this.processing == Processing.Stopped)
-                            break;
                         book.Status = DataObjects.AudiobookProcessingStatus.Processing; //set audiobook status
                         this.eLvAudiobook.Items.Refresh();
                         ConsoleWindow.WriteInfo("Starting Audiobook: " + book.Name);
