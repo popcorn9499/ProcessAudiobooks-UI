@@ -107,9 +107,9 @@ namespace ProcessAudiobooks_UI
 
         }
 
+        //removes items selected in filesList
         private void btnClearSelectedFiles_Click(object sender, RoutedEventArgs e)
         {
-            //removes items selected in filesList
             var selected = lvListFiles.SelectedItems.Cast<Object>().ToArray();
             foreach (var eachItem in selected)
             {
@@ -117,15 +117,15 @@ namespace ProcessAudiobooks_UI
             }
         }
 
+        //remove all items in the fileList  
         private void btnClearAllFiles_Click(object sender, RoutedEventArgs e)
         {
-            //remove all items in the fileList    
             lvListFiles.Items.Clear();
         }
 
+        //bring up a dialog box so the user can manually select the directory to output to.
         private void btnFindLocalPathDirectory_Click(object sender, RoutedEventArgs e)
         {
-            //bring up a dialog box so the user can manually select the directory to output to.
             VistaFolderBrowserDialog openFolderDialog = new VistaFolderBrowserDialog();
             if (openFolderDialog.ShowDialog() == true)
             {
@@ -134,17 +134,19 @@ namespace ProcessAudiobooks_UI
         }
 
 
-
+        //On window close give the user a chance to realize his or her mistake and cancel the closing operation
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //On window close give the user a chance to realize his or her mistake and cancel the closing operation
             MessageBoxResult result = MessageBox.Show("Do you really want to cancel?", "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result != MessageBoxResult.Yes)
                 e.Cancel = true;
         }
 
+        //Create the new audiobook object and close the window.
+        //The audiobook object is to be collected later on by the program
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+
             List<String> fileList = lvListFiles.Items.Cast<String>().ToList();
             String outputName = tbOutputName.Text;
             if (!outputName.Contains(".m4b")) //add the file extension if its missing
