@@ -1,4 +1,4 @@
-﻿using Renci.SshNet;
+using Renci.SshNet;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -58,9 +58,9 @@ namespace ProcessAudiobooks_UI
                         string line = await reader.ReadLineAsync();
                         if (line != null)
                         {
-                            ConsoleWindow.WriteInfo("[SSH] " + line);
-                            await Task.Delay(10); //add a small delay to prevent this loop from going out of control
+                            ConsoleWindow.WriteInfo("[SSH] " + line);  
                         }
+                        await Task.Delay(10); //add a small delay to prevent this loop from going out of control
                     }
                 }
                 cmd.EndExecute(result);
