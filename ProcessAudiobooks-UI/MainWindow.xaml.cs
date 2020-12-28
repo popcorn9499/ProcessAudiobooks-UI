@@ -126,6 +126,13 @@ namespace ProcessAudiobooks_UI
                 eLvAudiobook.Items.Remove(audiobook);
                 audiobook = audiobookWindow.book;
 
+                //handle the operation where cancel is hit
+                //the idea is just return so we never complete this function
+                if (audiobook == null)
+                {
+                    return;
+                }
+
                 //Handle empty windows
                 if (audiobook.Name.Equals(""))
                 {
