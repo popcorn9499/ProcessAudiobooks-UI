@@ -163,6 +163,7 @@ namespace ProcessAudiobooks_UI
 
     }
 
+    //Small little object to handle keeping track of if we are attempting to stop this process.
     public enum Processing
     {
         Stopped = 0,
