@@ -6,9 +6,10 @@ using System.Windows.Forms;
 
 namespace ProcessAudiobooks_UI.DataObjects
 {
+    //This object is ment to store all the data regarding a Audiobook which we are processing in the future.
     public class Audiobook
     {
-        public string Name { set; get; }
+        public string Name { set; get; } 
         public string outputName { set; get; }
         public string Artist { set; get; }
         public string Album { set; get; }
