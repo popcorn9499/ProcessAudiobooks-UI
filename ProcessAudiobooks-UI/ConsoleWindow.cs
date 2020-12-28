@@ -16,7 +16,7 @@ namespace ProcessAudiobooks_UI
             DEBUG = 50,
         }
 
-        private static int debugLevel = (int)DEBUG_LEVELS.INFO;
+        private static int debugLevel = (int)DEBUG_LEVELS.INFO; //NOTE. potentially make this not hard coded.
 
         private static string PREFIX = "[ProcessAudioBooks-UI]: ";
 
