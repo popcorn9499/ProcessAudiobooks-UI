@@ -90,6 +90,7 @@ namespace ProcessAudiobooks_UI
                             }
                             catch (SSHConnectionFailed)
                             {
+                                ConsoleWindow.WriteInfo("SSH Connection Error. Retrying...");
                                 retryConnection = MessageBox.Show("Do you wish to retry connecting to the ssh server?",
                                                                     "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Error);
                                 if (retryConnection == MessageBoxResult.No) //indicate that this loop has failed and that we should give up processing audiobooks.
@@ -123,8 +124,10 @@ namespace ProcessAudiobooks_UI
             this.btnStopCreateAudiobooks.IsEnabled = false;
             if (!failed)
             {
+                ConsoleWindow.WriteInfo("Completed the audiobooks!");
                 MessageBox.Show("Completed the audiobooks!");
             } else {
+                ConsoleWindow.WriteInfo("An error has occured we are giving up and exiting the code");
                 MessageBox.Show("Failure occured. some audiobooks never finished being processed");
             }
         }
