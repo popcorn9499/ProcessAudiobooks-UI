@@ -34,6 +34,7 @@ namespace ProcessAudiobooks_UI
 
         public async Task StartProcess(ssh sshClient)
         {
+            bool failed = false; //if any error occurs during this loop proceed to make it to the bottom and the the user it failed
             if (this.processing == Processing.Stopped) //if not started start.
             {
                 this.processing = Processing.Started;
@@ -78,8 +79,31 @@ namespace ProcessAudiobooks_UI
                         string commandDestFolder = tbRemotePath.Text + "/" + book.outputName;
 
                         //Run Command
-                        ConsoleWindow.WriteInfo("Copying book to its output directory");
-                        await sshClient.RunCommand("cd \"" + commandDestFolder + "\" && " + command);
+                        ConsoleWindow.WriteInfo("Processing the audiobook");
+                        MessageBoxResult retryConnection = MessageBoxResult.No; //handle retrying to connect if for whatever reason the ssh server refuses to respond.
+                        do //loop over this code until either the user gives up or 
+                        {
+                            try
+                            {
+                                //handle running a ssh command with the sshClient
+                                await sshClient.RunCommand("cd \"" + commandDestFolder + "\" && " + command);
+                            }
+                            catch (SSHConnectionFailed)
+                            {
+                                retryConnection = MessageBox.Show("Do you wish to retry connecting to the ssh server?",
+                                                                    "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                                if (retryConnection == MessageBoxResult.No) //indicate that this loop has failed and that we should give up processing audiobooks.
+                                {
+                                    failed = true;
+                                }
+                            }
+                        } while (retryConnection == MessageBoxResult.Yes);
+
+                        if (failed)
+                        { //we must exit this existing foreach loop and proceed to reset some of the program
+                            book.Status = DataObjects.AudiobookProcessingStatus.Ready;
+                            break;
+                        }
 
                         //copy files back
                         string finalOutputPath = this.addVariables(book.outputPath, cmdOutputPath, book);
@@ -97,7 +121,12 @@ namespace ProcessAudiobooks_UI
             this.processing = Processing.Stopped;
             this.btnStartCreateAudiobooks.IsEnabled = true;
             this.btnStopCreateAudiobooks.IsEnabled = false;
-            MessageBox.Show("Completed the audiobooks!");
+            if (!failed)
+            {
+                MessageBox.Show("Completed the audiobooks!");
+            } else {
+                MessageBox.Show("Failure occured. some audiobooks never finished being processed");
+            }
         }
 
         private void CopyDirectory(string file, string trueDestFolder)
