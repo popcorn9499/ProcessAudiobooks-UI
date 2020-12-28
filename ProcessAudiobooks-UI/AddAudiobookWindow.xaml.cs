@@ -80,38 +80,29 @@ namespace ProcessAudiobooks_UI
                 lvListFiles.Items.Add(s);
             }
 
-            string[] fileSplit;
-            string outputDirPath;
-            List<string> fileSplitList;
-            char dirSeperator = '\\';
+
             //get output path directory automatically
             if (tbOutputPath.Text.Equals(""))
-            {
+            {   //declaring the variables used in this conditional statement
+                string[] fileSplit;
+                string outputDirPath;
+                List<string> fileSplitList;
+                char dirSeperator = '\\';
+
                 string file = lvListFiles.Items[0].ToString();
-                FileAttributes attr = File.GetAttributes(file);
-                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                { //handling for a directory
-                    fileSplit = file.Split('\\');
-                    if (fileSplit.Length > 1)
-                    {
-                        fileSplitList = fileSplit.ToList();
-                        fileSplitList.RemoveAt(fileSplit.Length - 1);
-                        outputDirPath = string.Join(dirSeperator, fileSplitList);
-                    }
-                    else
-                    { //if its in the root folder of a drive
-                        outputDirPath = fileSplit[0];
-                    }
-                    tbOutputPath.Text = outputDirPath;
+
+                fileSplit = file.Split('\\');
+                if (fileSplit.Length > 1)
+                {
+                    fileSplitList = fileSplit.ToList();//convert the array to a list
+                    fileSplitList.RemoveAt(fileSplit.Length - 1);//remove the last element from the list... Yes I could do this without a list however I was incredibly lazy and this seemed quicker to write physically.
+                    outputDirPath = string.Join(dirSeperator, fileSplitList); 
                 }
                 else
-                { //handling for a file
-                    fileSplit = file.Split('\\');
-                    fileSplitList = fileSplit.ToList();
-                    fileSplitList.RemoveAt(fileSplit.Length - 1);
-                    outputDirPath = string.Join(dirSeperator, fileSplitList);
-                    tbOutputPath.Text = outputDirPath;
+                { //if its in the root folder of a drive
+                    outputDirPath = fileSplit[0];
                 }
+                tbOutputPath.Text = outputDirPath;
             }
 
         }
@@ -128,11 +119,13 @@ namespace ProcessAudiobooks_UI
 
         private void btnClearAllFiles_Click(object sender, RoutedEventArgs e)
         {
-                lvListFiles.Items.Clear();
+            //remove all items in the fileList    
+            lvListFiles.Items.Clear();
         }
 
         private void btnFindLocalPathDirectory_Click(object sender, RoutedEventArgs e)
         {
+            //bring up a dialog box so the user can manually select the directory to output to.
             VistaFolderBrowserDialog openFolderDialog = new VistaFolderBrowserDialog();
             if (openFolderDialog.ShowDialog() == true)
             {
@@ -140,9 +133,14 @@ namespace ProcessAudiobooks_UI
             }
         }
 
+
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            //On window close give the user a chance to realize his or her mistake and cancel the closing operation
+            MessageBoxResult result = MessageBox.Show("Do you really want to cancel?", "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result != MessageBoxResult.Yes)
+                e.Cancel = true;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -154,8 +152,12 @@ namespace ProcessAudiobooks_UI
             book = new DataObjects.Audiobook(tbName.Text, outputName , tbArtist.Text, tbAlbum.Text, tbGenre.Text, tbYear.Text, tbWriter.Text, fileList, tbOutputPath.Text);
             this.Close();
         }
+
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
+        {   
+            //this function is to cancel out of the window and do something else in the program
+            //On window close give the user a chance to realize his or her mistake and cancel the closing operation
             MessageBoxResult result = MessageBox.Show("Do you really want to cancel?", "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
                 this.Close();
