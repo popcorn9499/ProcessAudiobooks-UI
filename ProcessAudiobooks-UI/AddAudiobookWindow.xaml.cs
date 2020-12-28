@@ -24,22 +24,23 @@ namespace ProcessAudiobooks_UI
     /// </summary>
     public partial class AddAudiobookWindow : Window
     {
+        public DataObjects.Audiobook book = null; //Create a space to store the book information we are gathering
 
-        public bool outputPathManuallySet = false;
-        public DataObjects.Audiobook book = null;
-
+        //create a empty audiobook window for the user to add information to
         public AddAudiobookWindow(string overrideDir = "")
         {
             InitializeComponent();
             if (!overrideDir.Equals(""))
             {
                 tbOutputPath.Text = overrideDir;
-                outputPathManuallySet = true;
             }
         }
 
+
+        //create a prefilled audiobook window for the user to add more information to/fix any mistakes
         public AddAudiobookWindow(DataObjects.Audiobook audiobook, string overrideDir = "")
         {
+
             InitializeComponent();
             tbName.Text = audiobook.Name;
             tbOutputName.Text = audiobook.outputName;
@@ -52,15 +53,19 @@ namespace ProcessAudiobooks_UI
             if (!overrideDir.Equals(""))
             {
                 tbOutputPath.Text = overrideDir;
-                outputPathManuallySet = true;
             }
+
+            //go through the list adding all the items to the listview object
             foreach (String data in audiobook.FileList)
             {
                 lvListFiles.Items.Add(data);
             }
         }
 
-            private void listFiles_Drop(object sender, DragEventArgs e)
+
+        //handle dragging files to the window to add to the list of files to process.
+        //add by drag and dropping a file support
+        private void listFiles_Drop(object sender, DragEventArgs e)
         {
             string[] droppedFiles = null;
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) //checks if we have any dropped files and adds them.
@@ -74,21 +79,24 @@ namespace ProcessAudiobooks_UI
             {
                 lvListFiles.Items.Add(s);
             }
+
+            string[] fileSplit;
+            string outputDirPath;
+            List<string> fileSplitList;
+            char dirSeperator = '\\';
             //get output path directory automatically
-            if (!this.outputPathManuallySet)
+            if (tbOutputPath.Text.Equals(""))
             {
                 string file = lvListFiles.Items[0].ToString();
                 FileAttributes attr = File.GetAttributes(file);
                 if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                 { //handling for a directory
-                    string[] fileSplit = file.Split('\\');
-                    string outputDirPath;
+                    fileSplit = file.Split('\\');
                     if (fileSplit.Length > 1)
                     {
-                        List<string> fileSplitList = fileSplit.ToList();
+                        fileSplitList = fileSplit.ToList();
                         fileSplitList.RemoveAt(fileSplit.Length - 1);
-                        char x = '\\';
-                        outputDirPath = string.Join(x, fileSplitList);
+                        outputDirPath = string.Join(dirSeperator, fileSplitList);
                     }
                     else
                     { //if its in the root folder of a drive
@@ -98,12 +106,10 @@ namespace ProcessAudiobooks_UI
                 }
                 else
                 { //handling for a file
-                    string[] fileSplit = file.Split('\\');
-                    string outputDirPath;
-                    List<string> fileSplitList = fileSplit.ToList();
+                    fileSplit = file.Split('\\');
+                    fileSplitList = fileSplit.ToList();
                     fileSplitList.RemoveAt(fileSplit.Length - 1);
-                    char x = '\\';
-                    outputDirPath = string.Join(x, fileSplitList);
+                    outputDirPath = string.Join(dirSeperator, fileSplitList);
                     tbOutputPath.Text = outputDirPath;
                 }
             }
@@ -131,7 +137,6 @@ namespace ProcessAudiobooks_UI
             if (openFolderDialog.ShowDialog() == true)
             {
                 tbOutputPath.Text = openFolderDialog.SelectedPath;
-                outputPathManuallySet = true;
             }
         }
 
