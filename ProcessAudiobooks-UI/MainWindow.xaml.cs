@@ -118,7 +118,9 @@ namespace ProcessAudiobooks_UI
             DataObjects.Audiobook audiobook = (DataObjects.Audiobook)eLvAudiobook.SelectedItem; ;
             AddAudiobookWindow audiobookWindow;
             if (audiobook == null) //fixes crash if we try to edit without selecting something
+            {
                 return;
+            }
             do
             {
                 audiobookWindow = new AddAudiobookWindow(audiobook);
