@@ -22,7 +22,7 @@ namespace ProcessAudiobooks_UI
 
         public ConsoleWindow()
         {
-            AllocConsole();
+            AllocConsole(); //load the console window which we are writing to.
             ConsoleWindow.WriteDebug(" Started");
         }
 
