@@ -18,6 +18,14 @@ namespace ProcessAudiobooks_UI
         public int port { get; set; }
         public string username { get; set; }
         public string password { get; set; }
+        //empty constructor so deserializating from json to a object works correctly
+        public ssh()
+        {
+            this.ip = "127.0.0.1";
+            this.port = 22;
+            this.username = "me";
+            this.password = "me";
+        }
 
         //gather and save the user information and the port required to use this object and make a connection
         public ssh(string ip, int port, string username, string password) {
