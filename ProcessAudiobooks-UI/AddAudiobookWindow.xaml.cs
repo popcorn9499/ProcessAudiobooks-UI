@@ -25,7 +25,7 @@ namespace ProcessAudiobooks_UI
     public partial class AddAudiobookWindow : Window
     {
         public DataObjects.Audiobook book = null; //Create a space to store the book information we are gathering
-
+        public Boolean cancel = false;
         //create a empty audiobook window for the user to add information to
         public AddAudiobookWindow(string overrideDir = "")
         {
@@ -137,16 +137,19 @@ namespace ProcessAudiobooks_UI
         //On window close give the user a chance to realize his or her mistake and cancel the closing operation
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Do you really want to cancel?", "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result != MessageBoxResult.Yes)
-                e.Cancel = true;
+            if (this.cancel)
+            { //if exit is pressed the program should assume cancelling. the btnCancel is just a alternative method
+                MessageBoxResult result = MessageBox.Show("Do you really want to cancel?", "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result != MessageBoxResult.Yes)
+                    e.Cancel = true;
+            }
         }
 
         //Create the new audiobook object and close the window.
         //The audiobook object is to be collected later on by the program
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            this.cancel = false;
             List<String> fileList = lvListFiles.Items.Cast<String>().ToList();
             String outputName = tbOutputName.Text;
             if (!outputName.Contains(".m4b")) //add the file extension if its missing
@@ -157,12 +160,11 @@ namespace ProcessAudiobooks_UI
 
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             //this function is to cancel out of the window and do something else in the program
             //On window close give the user a chance to realize his or her mistake and cancel the closing operation
-            MessageBoxResult result = MessageBox.Show("Do you really want to cancel?", "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
-                this.Close();
+            this.cancel = true;
+            this.Close(); //uses the window_closing event to prevent us writing code multiple times
         }
     }
 }
