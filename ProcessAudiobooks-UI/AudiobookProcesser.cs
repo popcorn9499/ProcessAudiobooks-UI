@@ -73,27 +73,7 @@ namespace ProcessAudiobooks_UI
                     this.eLvAudiobook.Items.Refresh();
                     ConsoleWindow.WriteInfo("Starting Audiobook: " + book.Name);
                     ConsoleWindow.WriteInfo("Copying Audiobook to processing path");
-                    string destFolder = tbLocalPath.Text + "\\" + book.outputName;
-                    Directory.CreateDirectory(destFolder);
-                    string[] fileList = book.FileList.ToArray();
-                    foreach (String file in fileList)
-                    {
-                        // get the file attributes for file or directory
-                        FileAttributes attr = File.GetAttributes(file);
-                        string[] fileArray = file.Split("\\");
-                        string fileName = fileArray[fileArray.Length - 1];
-
-                        //detect whether its a directory or file
-                        if ((attr & FileAttributes.Directory) == FileAttributes.Directory) // if its a directory copy the directory and files individually
-                        {
-                            string trueDestFolder = destFolder + "\\" + fileName;
-                            this.CopyDirectory(file, trueDestFolder);
-                        }
-                        else //if its a file just do a simple file copy
-                        {
-                            System.IO.File.Copy(file, file.Replace(file, destFolder + "\\" + fileName), true);
-                        }
-                    }
+                    CopyFiles(book.outputName, book.FileList.ToArray());
                     //Create Command
 
                     String command = tbCommand.Text;
@@ -139,6 +119,54 @@ namespace ProcessAudiobooks_UI
             } catch (ProcessingError e)
             {
                 book.Status = AudiobookProcessingStatus.Error;
+            }
+        }
+
+        private void CopyFiles(string bookOutputName, string[] fileList)
+        {
+            string destFolder = tbLocalPath.Text + "\\" + bookOutputName;
+            Directory.CreateDirectory(destFolder);
+            try
+            {
+                foreach (String file in fileList)
+                {
+                    // get the file attributes for file or directory
+                    FileAttributes attr = File.GetAttributes(file);
+                    string[] fileArray = file.Split("\\");
+                    string fileName = fileArray[fileArray.Length - 1];
+
+                    //detect whether its a directory or file
+                    if ((attr & FileAttributes.Directory) == FileAttributes.Directory) // if its a directory copy the directory and files individually
+                    {
+                        string trueDestFolder = destFolder + "\\" + fileName;
+                        this.CopyDirectory(file, trueDestFolder);
+                    }
+                    else //if its a file just do a simple file copy
+                    {
+                        System.IO.File.Copy(file, file.Replace(file, destFolder + "\\" + fileName), true);
+                    }
+                }
+            }
+            catch (PathTooLongException e)
+            {
+                ConsoleWindow.WriteInfo("File path is too long!");
+                throw new ProcessingError();
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                ConsoleWindow.WriteInfo("Directory was not found " + destFolder);
+                throw new ProcessingError();
+            }
+            catch (IOException e)
+            {
+                ConsoleWindow.WriteInfo("IO Error occured");
+                throw new ProcessingError();
+            }
+            catch (Exception ex)
+            {
+                ConsoleWindow.WriteError(ex.ToString());
+                ConsoleWindow.WriteDebug(ex.StackTrace);
+                throw new ProcessingError();
             }
         }
         private void CopyDirectory(string file, string trueDestFolder)
