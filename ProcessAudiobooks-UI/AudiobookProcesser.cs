@@ -1,5 +1,6 @@
 using ProcessAudiobooks_UI.CustomControls;
 using ProcessAudiobooks_UI.DataObjects;
+using ProcessAudiobooks_UI.Exceptions;
 using Renci.SshNet;
 using System;
 using System.Collections.Generic;
@@ -59,78 +60,82 @@ namespace ProcessAudiobooks_UI
         }
         private async Task processBook(DataObjects.Audiobook book, ssh sshClient)
         {
-       
-            //if the book is ready to be processed and Processing hasnt been set to stop indicating we should stop mid execution of this loop. 
-            if (book.Status == DataObjects.AudiobookProcessingStatus.Ready && this.processing != Processing.Stopped)
+            try
             {
-                book.Status = DataObjects.AudiobookProcessingStatus.Processing; //set audiobook status
-                this.eLvAudiobook.Items.Refresh();
-                ConsoleWindow.WriteInfo("Starting Audiobook: " + book.Name);
-                ConsoleWindow.WriteInfo("Copying Audiobook to processing path");
-                string destFolder = tbLocalPath.Text + "\\" + book.outputName;
-                Directory.CreateDirectory(destFolder);
-                string[] fileList = book.FileList.ToArray();
-                foreach (String file in fileList)
+                //if the book is ready to be processed and Processing hasnt been set to stop indicating we should stop mid execution of this loop. 
+                if (book.Status == DataObjects.AudiobookProcessingStatus.Ready && this.processing != Processing.Stopped)
                 {
-                    // get the file attributes for file or directory
-                    FileAttributes attr = File.GetAttributes(file);
-                    string[] fileArray = file.Split("\\");
-                    string fileName = fileArray[fileArray.Length - 1];
-
-                    //detect whether its a directory or file
-                    if ((attr & FileAttributes.Directory) == FileAttributes.Directory) // if its a directory copy the directory and files individually
+                    book.Status = DataObjects.AudiobookProcessingStatus.Processing; //set audiobook status
+                    this.eLvAudiobook.Items.Refresh();
+                    ConsoleWindow.WriteInfo("Starting Audiobook: " + book.Name);
+                    ConsoleWindow.WriteInfo("Copying Audiobook to processing path");
+                    string destFolder = tbLocalPath.Text + "\\" + book.outputName;
+                    Directory.CreateDirectory(destFolder);
+                    string[] fileList = book.FileList.ToArray();
+                    foreach (String file in fileList)
                     {
-                        string trueDestFolder = destFolder + "\\" + fileName;
-                        this.CopyDirectory(file, trueDestFolder);
-                    }
-                    else //if its a file just do a simple file copy
-                    {
-                        System.IO.File.Copy(file, file.Replace(file, destFolder + "\\" + fileName), true);
-                    }
-                }
-                //Create Command
+                        // get the file attributes for file or directory
+                        FileAttributes attr = File.GetAttributes(file);
+                        string[] fileArray = file.Split("\\");
+                        string fileName = fileArray[fileArray.Length - 1];
 
-                String command = tbCommand.Text;
-                string cmdOutputPath = "output/" + book.outputName;
-                command = this.addVariables(command, cmdOutputPath, book);
-
-                string commandDestFolder = tbRemotePath.Text + "/" + book.outputName;
-
-                //Run Command
-                ConsoleWindow.WriteInfo("Processing the audiobook");
-                MessageBoxResult retryConnection = MessageBoxResult.No; //handle retrying to connect if for whatever reason the ssh server refuses to respond.
-                do //loop over this code until either the user gives up or 
-                {
-                    try
-                    {
-                        //handle running a ssh command with the sshClient
-                        await sshClient.RunCommand("cd \"" + commandDestFolder + "\" && " + command);
-                    }
-                    catch (SSHConnectionFailed)
-                    {
-                        ConsoleWindow.WriteInfo("SSH Connection Error. Retrying...");
-                        retryConnection = MessageBox.Show("Do you wish to retry connecting to the ssh server?",
-                                                            "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Error);
-                        if (retryConnection == MessageBoxResult.No) //indicate that this loop has failed and that we should give up processing audiobooks.
+                        //detect whether its a directory or file
+                        if ((attr & FileAttributes.Directory) == FileAttributes.Directory) // if its a directory copy the directory and files individually
                         {
-                            throw new ProcessingError();
+                            string trueDestFolder = destFolder + "\\" + fileName;
+                            this.CopyDirectory(file, trueDestFolder);
+                        }
+                        else //if its a file just do a simple file copy
+                        {
+                            System.IO.File.Copy(file, file.Replace(file, destFolder + "\\" + fileName), true);
                         }
                     }
-                } while (retryConnection == MessageBoxResult.Yes);
+                    //Create Command
+
+                    String command = tbCommand.Text;
+                    string cmdOutputPath = "output/" + book.outputName;
+                    command = this.addVariables(command, cmdOutputPath, book);
+
+                    string commandDestFolder = tbRemotePath.Text + "/" + book.outputName;
+
+                    //Run Command
+                    ConsoleWindow.WriteInfo("Processing the audiobook");
+                    MessageBoxResult retryConnection = MessageBoxResult.No; //handle retrying to connect if for whatever reason the ssh server refuses to respond.
+                    do //loop over this code until either the user gives up or 
+                    {
+                        try
+                        {
+                            //handle running a ssh command with the sshClient
+                            await sshClient.RunCommand("cd \"" + commandDestFolder + "\" && " + command);
+                        }
+                        catch (SSHConnectionFailed)
+                        {
+                            ConsoleWindow.WriteInfo("SSH Connection Error. Retrying...");
+                            retryConnection = MessageBox.Show("Do you wish to retry connecting to the ssh server?",
+                                                                "ProcessAudioBook Prompt", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                            if (retryConnection == MessageBoxResult.No) //indicate that this loop has failed and that we should give up processing audiobooks.
+                            {
+                                throw new ProcessingError();
+                            }
+                        }
+                    } while (retryConnection == MessageBoxResult.Yes);
 
 
-                //copy files back
-                string finalOutputPath = this.addVariables(book.outputPath, cmdOutputPath, book);
-                ConsoleWindow.WriteInfo("Copying book to its output directory");
-                this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", finalOutputPath);
+                    //copy files back
+                    string finalOutputPath = this.addVariables(book.outputPath, cmdOutputPath, book);
+                    ConsoleWindow.WriteInfo("Copying book to its output directory");
+                    this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", finalOutputPath);
 
-                ConsoleWindow.WriteInfo("Cleaning up!");
-                Directory.Delete(tbLocalPath.Text + "\\" + book.outputName, true);
-                ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
-                book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
-                this.eLvAudiobook.Items.Refresh();
+                    ConsoleWindow.WriteInfo("Cleaning up!");
+                    Directory.Delete(tbLocalPath.Text + "\\" + book.outputName, true);
+                    ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
+                    book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
+                    this.eLvAudiobook.Items.Refresh();
+                }
+            } catch (ProcessingError e)
+            {
+                book.Status = AudiobookProcessingStatus.Error;
             }
-            
         }
         private void CopyDirectory(string file, string trueDestFolder)
         {
@@ -159,15 +164,19 @@ namespace ProcessAudiobooks_UI
                 }
             } catch (PathTooLongException e) {
                 ConsoleWindow.WriteInfo("File path is too long!");
+                throw new ProcessingError();
             } catch (DirectoryNotFoundException e) {
                 ConsoleWindow.WriteInfo("Directory was not found " + file);
+                throw new ProcessingError();
             }
             catch (IOException e) {
                 ConsoleWindow.WriteInfo("IO Error occured");
+                throw new ProcessingError();
             } 
             catch (Exception ex) {
                 ConsoleWindow.WriteError(ex.ToString());
                 ConsoleWindow.WriteDebug(ex.StackTrace);
+                throw new ProcessingError();
             }
         }
 
