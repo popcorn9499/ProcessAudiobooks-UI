@@ -95,8 +95,10 @@ namespace ProcessAudiobooks_UI
                     cmd.EndExecute(result);
                     ConsoleWindow.WriteInfo("Finished");
                 }
-            } catch
+            } catch (Exception ex)
             {
+                ConsoleWindow.WriteInfo(ex.ToString());
+                ConsoleWindow.WriteInfo(ex.StackTrace);
                 throw new SSHConnectionFailed();
             }
         }
