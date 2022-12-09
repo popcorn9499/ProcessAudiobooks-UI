@@ -1,4 +1,4 @@
-﻿using ProcessAudiobooks_UI.CustomControls;
+using ProcessAudiobooks_UI.CustomControls;
 using ProcessAudiobooks_UI.DataObjects;
 using Renci.SshNet;
 using System;
@@ -134,19 +134,40 @@ namespace ProcessAudiobooks_UI
 
         private void CopyDirectory(string file, string trueDestFolder)
         {
-            Directory.CreateDirectory(trueDestFolder);
-            //Now Create all of the directories
-            string destPath;
-            foreach (string dirPath in Directory.GetDirectories(file, "*",
-                SearchOption.AllDirectories))
-                Directory.CreateDirectory(dirPath.Replace(file, trueDestFolder));
-
-            //Copy all the files & Replaces any files with the same name
-            foreach (string newPath in Directory.GetFiles(file, "*.*",
-                SearchOption.AllDirectories))
+            try
             {
-                destPath = newPath.Replace(file, trueDestFolder + "\\");
-                File.Copy(newPath, destPath, true);
+                ConsoleWindow.WriteInfo("Destination " + trueDestFolder);
+                Directory.CreateDirectory(trueDestFolder);
+                //Now Create all of the directories
+                string destPath;
+                ConsoleWindow.WriteInfo("File " + file);
+                foreach (string dirPath in Directory.GetDirectories(file, "*",
+                    SearchOption.AllDirectories))
+                {  //this foreach never continues to pass down....
+                    ConsoleWindow.WriteInfo("Create Directory " + dirPath.Replace(file, trueDestFolder));
+                    Directory.CreateDirectory(dirPath.Replace(file, trueDestFolder));
+                    ConsoleWindow.WriteInfo("Created Directory");
+                }
+                //Copy all the files & Replaces any files with the same name
+                foreach (string newPath in Directory.GetFiles(file, "*.*",
+                    SearchOption.AllDirectories))
+                {
+                    destPath = newPath.Replace(file, trueDestFolder + "\\");
+                    ConsoleWindow.WriteDebug("Copying file to " + newPath);
+                    File.Copy(newPath, destPath, true);
+                    ConsoleWindow.WriteDebug("Copied");
+                }
+            } catch (PathTooLongException e) {
+                ConsoleWindow.WriteInfo("File path is too long!");
+            } catch (DirectoryNotFoundException e) {
+                ConsoleWindow.WriteInfo("Directory was not found " + file);
+            }
+            catch (IOException e) {
+                ConsoleWindow.WriteInfo("IO Error occured");
+            } 
+            catch (Exception ex) {
+                ConsoleWindow.WriteError(ex.ToString());
+                ConsoleWindow.WriteDebug(ex.StackTrace);
             }
         }
 
