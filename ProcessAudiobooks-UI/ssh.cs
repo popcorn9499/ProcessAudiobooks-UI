@@ -1,4 +1,4 @@
-﻿using Renci.SshNet;
+using Renci.SshNet;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -73,11 +73,12 @@ namespace ProcessAudiobooks_UI
                 //create the ssh client object which we are using.
                 using (var client = new SshClient(this.ip, this.port, this.username, this.password))
                 {
+                    ConsoleWindow.WriteInfo("Starting command");
                     client.Connect();
                     ConsoleWindow.WriteInfo(command); //debug write the command to the console window so we can find it easily if something goes wrong.
                     var cmd = client.CreateCommand(command);
                     var result = cmd.BeginExecute();
-
+                    ConsoleWindow.WriteInfo("Started command");
                     //read all the stdout from the ssh client until it has stopped sending new lines/end of file/completed.
                     using (var reader =
                        new StreamReader(cmd.OutputStream, Encoding.UTF8, true, -1, true))
