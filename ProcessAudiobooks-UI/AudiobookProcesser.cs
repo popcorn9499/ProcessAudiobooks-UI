@@ -44,6 +44,10 @@ namespace ProcessAudiobooks_UI
                 foreach (DataObjects.Audiobook book in eLvAudiobook.Items)
                 {
                     await processBook(book, sshClient);
+                    if (book.Status == AudiobookProcessingStatus.Error) //handles still displaying errors
+                    {
+                        failed = true;
+                    }
                 }
             } 
             this.processing = Processing.Stopped;
