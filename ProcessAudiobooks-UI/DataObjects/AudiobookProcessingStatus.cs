@@ -8,6 +8,7 @@ namespace ProcessAudiobooks_UI.DataObjects
     { //An easy way to keep track of my audiobook status
         Ready = 0,
         Processing = 1,
-        Completed = 2
+        Completed = 2,
+        Error = 3
     }
 }
