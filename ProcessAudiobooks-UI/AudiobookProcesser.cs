@@ -63,9 +63,11 @@ namespace ProcessAudiobooks_UI
             }
         }
         private async Task processBook(DataObjects.Audiobook book, ssh sshClient)
-        {
+        { 
+            
             try
             {
+                
                 //if the book is ready to be processed and Processing hasnt been set to stop indicating we should stop mid execution of this loop. 
                 if (book.Status == DataObjects.AudiobookProcessingStatus.Ready && this.processing != Processing.Stopped)
                 {
@@ -111,14 +113,54 @@ namespace ProcessAudiobooks_UI
                     this.CopyDirectory(tbLocalPath.Text + "\\" + book.outputName + "\\output\\", finalOutputPath);
 
                     ConsoleWindow.WriteInfo("Cleaning up!");
-                    Directory.Delete(tbLocalPath.Text + "\\" + book.outputName, true);
+                    this.CleanupFiles(tbLocalPath.Text + "\\" + book.outputName);
                     ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
                     book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
-                    this.eLvAudiobook.Items.Refresh();
+                   
                 }
+            
             } catch (ProcessingError e)
             {
                 book.Status = AudiobookProcessingStatus.Error;
+            } catch (ProcessingCleanupError e)
+            {
+                book.Status = AudiobookProcessingStatus.CleanupError;
+                MessageBox.Show("Failure occured. Cleanup on '" + book.outputName + "' has Failed");
+            }
+            this.eLvAudiobook.Items.Refresh();
+        }
+
+        private void CleanupFiles(string fileName)
+        {
+            try
+            {
+                Directory.Delete(fileName, true);
+            }
+            catch (PathTooLongException e)
+            {
+                ConsoleWindow.WriteInfo("Failed to Delete. File path is too long!");
+                throw new ProcessingError();
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                ConsoleWindow.WriteInfo("Failed to Delete. Directory was not found " + fileName);
+                throw new ProcessingError();
+            }
+            catch (IOException e)
+            {
+                ConsoleWindow.WriteInfo("IO Error occured");
+                throw new ProcessingError();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                ConsoleWindow.WriteInfo("Do not have permission to delete file: " + fileName);
+                throw new ProcessingCleanupError();
+            }
+            catch (Exception ex)
+            {
+                ConsoleWindow.WriteError(ex.ToString());
+                ConsoleWindow.WriteDebug(ex.StackTrace);
+                throw new ProcessingError();
             }
         }
 

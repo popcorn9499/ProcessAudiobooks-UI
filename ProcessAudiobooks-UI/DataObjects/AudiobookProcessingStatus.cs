@@ -9,6 +9,7 @@ namespace ProcessAudiobooks_UI.DataObjects
         Ready = 0,
         Processing = 1,
         Completed = 2,
-        Error = 3
+        Error = 3,
+        CleanupError = 4
     }
 }
