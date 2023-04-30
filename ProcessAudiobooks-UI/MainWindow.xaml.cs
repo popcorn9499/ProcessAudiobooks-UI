@@ -20,6 +20,7 @@ using System.Windows.Forms;
 using Ookii.Dialogs.Wpf;
 using Newtonsoft.Json;
 using MessageBox = System.Windows.MessageBox;
+using ProcessAudiobooks_UI.DataObjects;
 
 namespace ProcessAudiobooks_UI
 {
@@ -33,6 +34,7 @@ namespace ProcessAudiobooks_UI
     {
         public int x;
         public ssh sshClient = null;
+        public Audiobook lastBook = null;
 
         public AudiobookProcesser processor;
         public MainWindow()
@@ -84,15 +86,16 @@ namespace ProcessAudiobooks_UI
             {
                 outputDirOverride = tbOutputDirOverride.Text;
             }
+            
             do
             {
-                if (!looped)
+                if (!looped && this.lastBook == null)
                 {
                     audiobookWindow = new AddAudiobookWindow(outputDirOverride);
                 }
                 else
                 {
-                    audiobookWindow = new AddAudiobookWindow(audiobook, outputDirOverride);
+                    audiobookWindow = new AddAudiobookWindow(this.lastBook, outputDirOverride);
                 }
                 audiobookWindow.ShowDialog(); //used show dialog to keep the window open for an extended period of time
                 if (audiobookWindow.book == null) //if we never set a audiobook we know it was never configured therefore just stop trying to add it to the listview
@@ -109,6 +112,8 @@ namespace ProcessAudiobooks_UI
                     System.Windows.MessageBox.Show("Please set Output Name to something");
                 }
                 looped = true;
+                //store the last audio book for future use
+                this.lastBook = audiobook;
             } while (audiobook.Name.Equals("") || audiobook.outputName.Equals(""));
             eLvAudiobook.Items.Add(audiobook);
         }
@@ -147,6 +152,9 @@ namespace ProcessAudiobooks_UI
             } while (audiobook.Name.Equals("") || audiobook.outputName.Equals(""));
             
             eLvAudiobook.Items.Add(audiobook);
+
+            //store the last audio book for future use
+            this.lastBook = audiobook;
         }
 
         private void btnDeleteBook_Click(object sender, RoutedEventArgs e)
