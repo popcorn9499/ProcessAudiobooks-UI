@@ -23,7 +23,7 @@ namespace ProcessAudiobooks_UI
         private Processing processing = Processing.Stopped;
         private Button btnStartCreateAudiobooks, btnStopCreateAudiobooks;
 
-        public AudiobookProcesser(TextBox tbCommand, TextBox tbLocalPath, TextBox tbRemotePath, EnhancedListView eLvAudiobook, Button btnStartCreateAudiobooks , Button btnStopCreateAudiobooks)
+        public AudiobookProcesser(TextBox tbCommand, TextBox tbLocalPath, TextBox tbRemotePath, EnhancedListView eLvAudiobook, Button btnStartCreateAudiobooks, Button btnStopCreateAudiobooks)
         {
             this.tbCommand = tbCommand;
             this.tbLocalPath = tbLocalPath;
@@ -31,7 +31,7 @@ namespace ProcessAudiobooks_UI
             this.eLvAudiobook = eLvAudiobook;
             this.btnStopCreateAudiobooks = btnStopCreateAudiobooks;
             this.btnStartCreateAudiobooks = btnStartCreateAudiobooks;
-        } 
+        }
 
         public async Task StartProcess(ssh sshClient)
         {
@@ -49,7 +49,7 @@ namespace ProcessAudiobooks_UI
                         failed = true;
                     }
                 }
-            } 
+            }
             this.processing = Processing.Stopped;
             this.btnStartCreateAudiobooks.IsEnabled = true;
             this.btnStopCreateAudiobooks.IsEnabled = false;
@@ -57,17 +57,19 @@ namespace ProcessAudiobooks_UI
             {
                 ConsoleWindow.WriteInfo("Completed the audiobooks!");
                 MessageBox.Show("Completed the audiobooks!");
-            } else {
+            }
+            else
+            {
                 ConsoleWindow.WriteInfo("An error has occured we are giving up and exiting the code");
                 MessageBox.Show("Failure occured. some audiobooks never finished being processed");
             }
         }
         private async Task processBook(DataObjects.Audiobook book, ssh sshClient)
-        { 
-            
+        {
+
             try
             {
-                
+
                 //if the book is ready to be processed and Processing hasnt been set to stop indicating we should stop mid execution of this loop. 
                 if (book.Status == DataObjects.AudiobookProcessingStatus.Ready && this.processing != Processing.Stopped)
                 {
@@ -116,13 +118,15 @@ namespace ProcessAudiobooks_UI
                     this.CleanupFiles(tbLocalPath.Text + "\\" + book.outputName);
                     ConsoleWindow.WriteInfo("Finished Audiobook: " + book.Name);
                     book.Status = DataObjects.AudiobookProcessingStatus.Completed; //set audiobook status
-                   
+
                 }
-            
-            } catch (ProcessingError e)
+
+            }
+            catch (ProcessingError e)
             {
                 book.Status = AudiobookProcessingStatus.Error;
-            } catch (ProcessingCleanupError e)
+            }
+            catch (ProcessingCleanupError e)
             {
                 book.Status = AudiobookProcessingStatus.CleanupError;
                 MessageBox.Show("Failure occured. Cleanup on '" + book.outputName + "' has Failed");
@@ -236,25 +240,31 @@ namespace ProcessAudiobooks_UI
                     File.Copy(newPath, destPath, true);
                     ConsoleWindow.WriteDebug("Copied");
                 }
-            } catch (PathTooLongException e) {
+            }
+            catch (PathTooLongException e)
+            {
                 ConsoleWindow.WriteInfo("File path is too long!");
                 throw new ProcessingError();
-            } catch (DirectoryNotFoundException e) {
+            }
+            catch (DirectoryNotFoundException e)
+            {
                 ConsoleWindow.WriteInfo("Directory was not found " + file);
                 throw new ProcessingError();
             }
-            catch (IOException e) {
+            catch (IOException e)
+            {
                 ConsoleWindow.WriteInfo("IO Error occured");
                 throw new ProcessingError();
-            } 
-            catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 ConsoleWindow.WriteError(ex.ToString());
                 ConsoleWindow.WriteDebug(ex.StackTrace);
                 throw new ProcessingError();
             }
         }
 
-        public string addVariables(string data,string cmdOutputPath, Audiobook book)
+        public string addVariables(string data, string cmdOutputPath, Audiobook book)
         {
             return data.Replace("%Name%", book.Name).Replace("%outputName%", cmdOutputPath).Replace("%Artist%", book.Artist).Replace("%Album%", book.Album)
                             .Replace("%Genre%", book.Genre).Replace("%Year%", book.Year).Replace("%Writer%", book.Writer);

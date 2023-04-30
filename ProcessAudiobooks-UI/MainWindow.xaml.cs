@@ -107,6 +107,7 @@ namespace ProcessAudiobooks_UI
                 {
                     System.Windows.MessageBox.Show("Please set name to something");
                 }
+
                 if (audiobook.outputName.Equals(""))
                 {
                     System.Windows.MessageBox.Show("Please set Output Name to something");

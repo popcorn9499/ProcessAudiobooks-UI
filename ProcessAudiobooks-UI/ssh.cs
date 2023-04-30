@@ -68,6 +68,7 @@ namespace ProcessAudiobooks_UI
         //if an error occurs this will throw 
         public async Task RunCommand(string command)
         {
+            //TODO maybe add in more specific error handling to give more detailed feedback
             try //catch errors and throw a nicer looking exception forward.
             {
                 //create the ssh client object which we are using.
@@ -75,17 +76,22 @@ namespace ProcessAudiobooks_UI
                 {
                     ConsoleWindow.WriteInfo("Starting command");
                     client.Connect();
+                    
                     ConsoleWindow.WriteInfo(command); //debug write the command to the console window so we can find it easily if something goes wrong.
                     var cmd = client.CreateCommand(command);
+                    
                     var result = cmd.BeginExecute();
                     ConsoleWindow.WriteInfo("Started command");
+                    
                     //read all the stdout from the ssh client until it has stopped sending new lines/end of file/completed.
                     using (var reader =
                        new StreamReader(cmd.OutputStream, Encoding.UTF8, true, -1, true))
                     { 
+
                         while (!result.IsCompleted || !reader.EndOfStream)
                         {
                             string line = await reader.ReadLineAsync(); //read data from the reader
+                            
                             if (line != null)
                             {
                                 ConsoleWindow.WriteInfo("[SSH] " + line); //print the data to the ConsoleWindow if its important
