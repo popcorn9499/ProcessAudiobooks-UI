@@ -23,7 +23,7 @@ jobs:
       - name: Test
         run: dotnet test --no-restore --verbosity normal
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.Build.outputs.filename }}
-          path: ${{ steps.Build.outputs.artifactpath }}
+          name: ProcessAudiobooks-UI
+          path: ./ProcessAudiobooks-UI/bin/Release/**
