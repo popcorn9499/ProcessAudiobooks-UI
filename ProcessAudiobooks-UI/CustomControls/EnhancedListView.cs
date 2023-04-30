@@ -118,7 +118,7 @@ namespace ProcessAudiobooks_UI.CustomControls
         // a dictionary is used to save the settings for this DGV.
         // As key the name of the control is used.
         [System.Configuration.UserScopedSetting]
-        [System.Configuration.SettingsSerializeAs(System.Configuration.SettingsSerializeAs.Binary)]
+        [System.Configuration.SettingsSerializeAs(System.Configuration.SettingsSerializeAs.Xml)]
         [System.Configuration.DefaultSettingValue("")]
         public Dictionary<string, List<ColumnOrderItem>> ColumnOrder
         {
